@@ -12,3 +12,6 @@ class Guess(DoubanApiBase):
 
     def albums(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/album/people_albums/%s/guesses'%user_id, start=start, count=count)
+
+    def onlines(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
+        return self._get('/v2/online/people_onlines/%s/guesses'%user_id, start=start, count=count)

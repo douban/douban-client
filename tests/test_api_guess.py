@@ -23,6 +23,14 @@ class TestApiGuess(DoubanClientTestBase):
         self.assertTrue(ret.has_key('albums'))
         self.assertTrue(isinstance(ret['albums'], list))
 
+    def test_guess_onlines(self):
+        ret = self.client.guess.onlines(self.user_id)
+
+        self.assertTrue(ret.has_key('start'))
+        self.assertTrue(ret.has_key('count'))
+        self.assertTrue(ret.has_key('onlines'))
+        self.assertTrue(isinstance(ret['onlines'], list))
+
 
 if __name__ == '__main__':
     main()

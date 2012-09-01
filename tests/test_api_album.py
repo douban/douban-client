@@ -15,13 +15,13 @@ class TestApiAlbum(DoubanClientTestBase):
         self.assertEqual(self.album_id, ret['id'])
         self.assertTrue(ret.has_key('liked'))
 
-    # def test_new_album(self):
-    #     ret = self.client.album.new('test', desc='ddddddddddddd')
-    #     
-    #     self.assertTrue(ret.has_key('id'))
-    #     self.assertTrue(ret.has_key('privacy'))
-    #     self.assertTrue(ret.has_key('size'))
-    #     self.assertTrue(ret.has_key('author'))
+    def test_new_album(self):
+        ret = self.client.album.new('test', desc='ddddddddddddd')
+        
+        self.assertTrue(ret.has_key('id'))
+        self.assertTrue(ret.has_key('privacy'))
+        self.assertTrue(ret.has_key('size'))
+        self.assertTrue(ret.has_key('author'))
 
     # def test_update_album(self):
     #     new_title = uuid4().hex
