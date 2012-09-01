@@ -8,6 +8,6 @@ class Online(DoubanApiBase):
         return '<DoubanAPI Online>'
 
     def get(self, id):
-        return self._get('/v2/online/%s/'%id)
+        return self._get('/v2/online/%s'%id)
 
 

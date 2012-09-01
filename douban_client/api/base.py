@@ -18,7 +18,6 @@ class DoubanApiBase(object):
         return self.client.post(url, **opts).parsed
 
     def _put(self, url, **opts):
-        print opts
         return self.client.put(url, **opts).parsed
 
     def _patch(self, url, **opts):
