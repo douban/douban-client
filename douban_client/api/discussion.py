@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
 
 class Discussion(DoubanApiBase):

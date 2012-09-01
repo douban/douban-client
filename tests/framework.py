@@ -14,12 +14,20 @@ from douban_client import DoubanClient
 KEY = '0af8d9bfca3f0c1a20ea8d3f5ebd244e'
 SECRET = 'bf620e8a501e18b6'
 CALLBACK = 'http://127.0.0.1:4567/oauth2/callback'
-SCOPE = 'douban_basic_common,community_basic_user,community_basic_note'
+
+SCOPE_MAP = {
+             'basic': ['douban_basic_common', 'community_basic_user'],
+             'note': ['community_basic_note'],
+             'miniblog': ['shuo_basic_r', 'shuo_basic_w', 'shuo_private'],
+             'online': ['community_online_basic', 'community_online_advanced'],
+            }
+
+SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
 
 def get_client():
     client = DoubanClient(KEY, SECRET, CALLBACK, SCOPE)
 
-    token = 'a7b210cf2f5064d8f716326d8df12e88'
+    token = 'f78885685b8351e8e69990391289f5b8'
 
     if token:
         client.auth_by_token(token) 
