@@ -168,6 +168,28 @@ __图片 Photo__
 
 ```
 
+__线上活动 Online__
+```
+# 以下 id 指线上活动数字 id
+# begin_time, end_time 格式为 '%Y-%m-%d %H:%M:%S'
+# cate 可选值: day, week, latest
+获取一条线上活动 client.online.get(id)
+发表一条线上活动 client.online.new(title, desc, begin_time, end_time)
+更新一条线上活动 client.online.update(title, desc, begin_time, end_time)
+删除一条线上活动 client.online.delete(id)
+
+参加一条线上活动 client.online.join(id)
+取消参加线上活动 client.online.quit(id)
+
+喜欢一条线上活动 client.online.like(id)
+取消喜欢线上活动 client.online.unlike(id)
+
+获取参加线上活动成员列表 client.online.participants(id, start, count)
+
+获取线上活动列表 client.online.list(cate, start, end) 
+
+```
+
 已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
 ### 联系

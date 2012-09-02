@@ -85,15 +85,15 @@ class TestApiOnline(DoubanClientTestBase):
         self.assertTrue(ret.has_key('total'))
         self.assertTrue(isinstance(ret['onlines'], list))
 
-    def test_owned_onlines(self):
-        # TODO
-        # ret = self.client.online.owned(self.user_id)
-        pass
+    # def test_owned_onlines(self):
+    #     # TODO
+    #     # ret = self.client.online.owned(self.user_id)
+    #     pass
 
-    def test_joined_onlines(self):
-        # TODO
-        # ret = self.client.online.joined(self.user_id)
-        pass
+    # def test_joined_onlines(self):
+    #     # TODO
+    #     # ret = self.client.online.joined(self.user_id)
+    #     pass
 
 
 
