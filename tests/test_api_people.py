@@ -17,8 +17,8 @@ class TestApiPeople(DoubanClientTestBase):
         self.assertTrue(ret.has_key('id'))
 
     def test_search(self):
-        kw = '落'
-        ret = self.client.people.search(q=kw)
+        q = '落'
+        ret = self.client.people.search(q)
 
         self.assertTrue(ret.has_key('start'))
         self.assertTrue(ret.has_key('count'))
@@ -65,6 +65,10 @@ class TestApiPeople(DoubanClientTestBase):
         self.assertTrue(isinstance(ret, list))
         self.assertTrue(all([r.has_key('uid') for r in ret]))
 
+
+    def test_following_followers_of(self):
+        ret = self.client.people.following_followers_of('51789002')
+        print ret
 
 
     # def test_suggestions(self):

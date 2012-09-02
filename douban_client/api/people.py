@@ -14,7 +14,7 @@ class People(DoubanApiBase):
     def me(self):
         return self.get('~me')
 
-    def search(self, q='', start=DEFAULT_START, count=DEFAULT_COUNT):
+    def search(self, q, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/people', q=q, start=start, count=count)
 
     def follow(self, id):
@@ -39,8 +39,11 @@ class People(DoubanApiBase):
         return self._get('/shuo/users/%s/followers'%id, page=page, count=count)
 
     def follow_in_common(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        page = start/count
-        return self._get('/shuo/users/%s/follow_in_common'%id, page=page, count=count)
+        return self._get('/shuo/users/%s/follow_in_common'%id, start=start, count=count)
+
+    # def following_followers_of(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
+    #    return self._get('/shuo/users/%s/following_followers_of', start=start, count=count)
+
 
     # def suggestions(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
     #     page = start/count
