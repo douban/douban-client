@@ -28,7 +28,7 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>douban-client</h3>
+          <h2>douban-client</h2>
 
 <p>douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包括了 OAuth 2.0 认证、图片上传以及接口方面的调用。</p>
 
@@ -139,6 +139,20 @@ count: 20
 转发广播 client.miniblog.reshare(id)
 取消转发某广播 client.miniblog.unreshare(id)
 转发某广播的用户列表 client.miniblog.reshares(id)
+
+</code></pre>
+
+<p><strong>豆邮 Doumail</strong></p>
+
+<pre><code># 以下 id 指豆邮数字 id
+获取一条豆邮 client.doumail.get(id)
+
+删除一条豆邮 client.doumail.delete(id)
+删除一批豆邮 client.doumail.deletes(ids) # ids: [id, id, id]
+
+收件箱中豆邮列表 client.doumail.inbox(start, count)
+发件箱中豆邮列表 client.doumail.outbox(start, count)
+未读豆邮列表 client.doumail.unread(start, count)
 
 </code></pre>
 
