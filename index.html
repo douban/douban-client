@@ -28,32 +28,86 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>Welcome to GitHub Pages.</h3>
+          <h3>douban-client</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包括了 OAuth 2.0 认证、图片上传以及接口方面的调用。</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>目前已完成的接口有：</p>
+
+<pre><code>* 用户 People
+* 广播 Miniblog
+* 豆邮 Doumail
+* 日记 Note
+* 相册 Album
+* 图片 Photo
+* 线上活动 Online
+* 讨论区 Discussion
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>正在进行开发中的接口有:</p>
 
-<h3>Designer Templates</h3>
+<pre><code>* 豆瓣猜 Guess
+* 同城活动 Event
+* 音乐 Music
+* 电影 Movie
+* 图书 Book
+* 回复 Comment
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h3>安装</h3>
 
-<h3>Rather Drive Stick?</h3>
+<pre><code>pip install douban-client
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>或</p>
 
-<h3>Authors and Contributors</h3>
+<pre><code>easy_install douban-client
+</code></pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<h3>使用说明</h3>
 
-<h3>Support or Contact</h3>
+<p>通用接口:</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>获取 client.xxx.get()
+新建 client.xxx.new()
+更新 client.xxx.update()
+删除 client.xxx.delete()
+列表 client.xxx.list()
+</code></pre>
+
+<p>默认参数（参考豆瓣官方文档）:</p>
+
+<pre><code># 在需要传 start, count 的接口，默认：
+start: 0
+count: 20
+＃ 如需更改，请自定指定
+</code></pre>
+
+<p><strong>用户 People</strong></p>
+
+<pre><code># 以下 id 部分指用户数字 id
+获取当前用户信息 client.people.me
+获取指定用户信息 client.people.get(id) 
+搜索用户    client.people.search(q)       # q: 搜索的关键词
+
+关注用户    client.people.follow(id)
+取消关注    client.people.unfollow(id)
+加入黑名单  client.people.block(id)
+获取粉丝信息  client.people.followers(id, start, count) # 谁关注了此 id
+获取关注者信息 client.people.following(id, start, count) # 此 id 关注了谁
+查看关注关系  client.people.friendships(target_id, source_id) # 如不指定 source_id 则使用当前用户
+查看共同关注  client.people.follow_in_common(id, start,count) # 查看当前用户与指定 id 共同关注好友
+</code></pre>
+
+<p>已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <a href="https://github.com/liluo/douban-client/tree/master/tests">https://github.com/liluo/douban-client/tree/master/tests</a></p>
+
+<h3>联系</h3>
+
+<ul>
+<li>使用 douban-client 过程中遇到 bug, 可以到 <a href="https://github.com/liluo/douban-client/issues">Issues</a> 反馈</li>
+<li>比较紧急的问题可以在 Douban 或者 Twitter @liluoliluo </li>
+<li>欢迎提 pull request</li>
+</ul>
         </section>
 
         <aside id="sidebar">
