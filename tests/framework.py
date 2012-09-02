@@ -9,6 +9,7 @@ sys.path.insert(0, ROOT_DIR)
 
 from unittest import main, TestCase
 from douban_client import DoubanClient
+from douban_client.api.error import DoubanError
 
 
 KEY = '0af8d9bfca3f0c1a20ea8d3f5ebd244e'
@@ -21,6 +22,7 @@ SCOPE_MAP = {
              'miniblog': ['shuo_basic_r', 'shuo_basic_w', 'shuo_private'],
              'online': ['community_basic_online', 'community_advanced_online'],
              'photo': ['community_basic_photo', 'community_advanced_photo'],
+             'music': ['music_basic_r', 'music_basic_w'],
             }
 
 SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
@@ -28,7 +30,7 @@ SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
 def get_client():
     client = DoubanClient(KEY, SECRET, CALLBACK, SCOPE)
 
-    token = '128e509d4ecaa32837aaf1d7ec5fe978'
+    token = '9476d304158d89a7bd64790c40a89cf5'
 
     if token:
         client.auth_by_token(token) 

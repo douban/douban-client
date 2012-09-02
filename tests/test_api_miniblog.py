@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from uuid import uuid4
-from framework import DoubanClientTestBase, main
+from framework import DoubanClientTestBase, DoubanError, main
 
 class TestApiMiniblog(DoubanClientTestBase):
 
@@ -58,12 +58,10 @@ class TestApiMiniblog(DoubanClientTestBase):
     def test_delete_miniblog(self):
         mb = self._new_miniblog()
         mid = mb['id']
-
         self.client.miniblog.delete(mid)
-        ret = self.client.miniblog.get(mid)
+        func = self.client.miniblog.get
 
-        self.assertEqual('', ret['code'])
-        self.assertTrue("The requested link does not exist on this site." in ret['msg'])
+        self.assertRaises(DoubanError, func, mid)
 
     def test_miniblog_like(self):
         mb = self._new_miniblog()

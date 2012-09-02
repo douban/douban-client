@@ -10,6 +10,9 @@ from .online import Online
 from .event import Event
 from .guess import Guess
 from .miniblog import Miniblog
+from .book import Book
+from .movie import Movie
+from .music import Music
 
 class DoubanApi(object):
 
@@ -55,3 +58,15 @@ class DoubanApi(object):
     @property
     def miniblog(self):
         return Miniblog(self.client)
+
+    @property
+    def book(self):
+        return Book(self.client)
+
+    @property
+    def movie(self):
+        return Movie(self.client)
+
+    @property
+    def music(self):
+        return Music(self.client)
