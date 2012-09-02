@@ -66,6 +66,12 @@
 
 <h3>使用说明</h3>
 
+<h4>OAuth 2.0 认证</h4>
+
+<p>在 OAuth 2.0 中，权限</p>
+
+<h4>接口说明</h4>
+
 <p>通用接口:</p>
 
 <pre><code>获取 client.xxx.get()
@@ -77,28 +83,29 @@
 
 <p>默认参数（参考豆瓣官方文档）:</p>
 
-<pre><code># 在需要传 start, count 的接口，默认：
-start: 0
+<pre><code>start: 0
 count: 20
-＃ 如需更改，请自定指定
 </code></pre>
 
 <p><strong>用户 People</strong></p>
 
 <pre><code># 以下 id 部分指用户数字 id
-获取当前用户信息 client.people.me
-获取指定用户信息 client.people.get(id) 
-搜索用户    client.people.search(q)       # q: 搜索的关键词
+当前用户 client.people.me
+指定用户 client.people.get(id) 
+搜索用户 client.people.search(q)       # q: 搜索的关键词
 
-关注用户    client.people.follow(id)
-取消关注    client.people.unfollow(id)
-加入黑名单  client.people.block(id)
-获取粉丝信息  client.people.followers(id, start, count) # 谁关注了此 id
-获取关注者信息 client.people.following(id, start, count) # 此 id 关注了谁
-查看关注关系  client.people.friendships(target_id, source_id) # 如不指定 source_id 则使用当前用户
-查看共同关注  client.people.follow_in_common(id, start,count) # 查看当前用户与指定 id 共同关注好友
+关注用户 client.people.follow(id)
+取消关注 client.people.unfollow(id)
+粉丝信息 client.people.followers(id, start, count)
+关注信息 client.people.following(id, start, count) 
+关注关系 client.people.friendships(target_id, source_id) 
+共同关注 client.people.follow_in_common(id, start,count) 
+加入黑名单 client.people.block(id)
 </code></pre>
 
+<p><strong>广播 Miniblog</strong></p>
+
+<pre><code></code></pre>
 <p>已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <a href="https://github.com/liluo/douban-client/tree/master/tests">https://github.com/liluo/douban-client/tree/master/tests</a></p>
 
 <h3>联系</h3>
