@@ -68,18 +68,32 @@
 
 <h4>OAuth 2.0 认证</h4>
 
-<p>在 OAuth 2.0 中，权限</p>
+<pre><code>from douban_client import DoubanClient
+
+API_KEY = 'your api key'
+API_SECRET = 'your api secret'
+
+# 在 OAuth 2.0 中，
+# 获取权限需要指定相应的 scope，请注意!!
+SCOPE = 'shuo_basic_r,shuo_basic_w'
+
+client = DoubanClient(API_KEY, API_SECRET, SCOPE)
+
+# 以下方式 2 选 1:
+# 引导用户授权
+print 'Go to the following link in your browser:' 
+print client.authorize_url
+code = raw_input('Enter the verification code:')
+client.auth_by_code(code)
+
+# 如果有之前有 token，则可以
+client.auth_by_token(token)
+
+</code></pre>
+
+<p>至此，已经完成 OAuth 2.0 授权。</p>
 
 <h4>接口说明</h4>
-
-<p>通用接口:</p>
-
-<pre><code>获取 client.xxx.get()
-新建 client.xxx.new()
-更新 client.xxx.update()
-删除 client.xxx.delete()
-列表 client.xxx.list()
-</code></pre>
 
 <p>默认参数（参考豆瓣官方文档）:</p>
 
@@ -89,7 +103,7 @@ count: 20
 
 <p><strong>用户 People</strong></p>
 
-<pre><code># 以下 id 部分指用户数字 id
+<pre><code># 以下 id 指用户数字 id
 当前用户 client.people.me
 指定用户 client.people.get(id) 
 搜索用户 client.people.search(q)       # q: 搜索的关键词
@@ -105,7 +119,71 @@ count: 20
 
 <p><strong>广播 Miniblog</strong></p>
 
-<pre><code></code></pre>
+<pre><code># 以下 id 指广播数字 id
+当前用户Timeline client.miniblog.home_timeline(count)
+指定用户Timeline client.miniblog.user_timeline(user_id, count)
+@当前用户的广播  client.miniblog.mentions(count)
+
+获取一条广播 client.miniblog.get(id)
+新写一条广播 client.miniblog.new(text)
+新写一条带图片的广播 client.miniblog.new(text, image=open('/path/pic.png'))
+删除一条广播 client.miniblog.delete(id)
+
+获取某广播回复列表 client.miniblog.comments(id)
+回复某条广播 client.miniblog.comment(text)
+
+赞某广播 client.miniblog.like(id)
+取消赞某广播 client.miniblog.unlike(id)
+赞某广播用户列表 client.miniblog.liker(id)
+
+转发广播 client.miniblog.reshare(id)
+取消转发某广播 client.miniblog.unreshare(id)
+转发某广播的用户列表 client.miniblog.reshares(id)
+
+</code></pre>
+
+<p><strong>日记 Note</strong></p>
+
+<pre><code># 以下 id 指日记数字 id
+获取一条日记 client.note.get(id)
+新写一条日记 client.note.new(title, content)
+更新一条日记 client.note.update(title, content)
+删除一条日记 client.note.delete(id)
+
+喜欢一条日记 client.note.like(id)
+取消喜欢一条日记 client.note.unlike(id)
+
+获取用户日记列表 client.note.list(user_id, start, count)
+获取用户喜欢的日记列表 client.note.liked_list(user_id, start, count)
+
+</code></pre>
+
+<p><strong>相册 Album</strong></p>
+
+<pre><code># 以下 id 指相册数字 id
+获取一个相册 client.album.get(id)
+新建一个相册 client.album.new(title, desc) # desc 描述文字
+删除一个相册 client.album.delete(id)
+
+获取用户相册列表 client.album.list(user_id)
+获取用户喜欢相册列表 client.album.liked_list(user_id)
+获取相册图片列表 client.album.photos(id)
+
+</code></pre>
+
+<p><strong>图片 Photo</strong></p>
+
+<pre><code># 以下 id 指图片数字 id
+获取一张图片 client.photo.get(id)
+上传一张图片 client.photo.new(album_id, image) # image = open('/path/pic.png')
+更新图片描述 client.photo.update(id, desc)     # desc 为描述文字
+删除一条图片 client.photo.delete(id)
+
+喜欢一张图片 client.photo.like(id)
+取消喜欢一张图片 client.photo.unlike(id)
+
+</code></pre>
+
 <p>已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <a href="https://github.com/liluo/douban-client/tree/master/tests">https://github.com/liluo/douban-client/tree/master/tests</a></p>
 
 <h3>联系</h3>
