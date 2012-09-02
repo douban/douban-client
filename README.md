@@ -1,4 +1,4 @@
-### douban-client
+## douban-client
 
 douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包括了 OAuth 2.0 认证、图片上传以及接口方面的调用。
 
@@ -109,6 +109,11 @@ __广播 Miniblog__
 转发广播 client.miniblog.reshare(id)
 取消转发某广播 client.miniblog.unreshare(id)
 转发某广播的用户列表 client.miniblog.reshares(id)
+
+```
+
+__豆邮 Doumail__
+```
 
 ```
 

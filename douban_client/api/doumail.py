@@ -10,16 +10,13 @@ class Doumail(DoubanApiBase):
     def get(self, id):
         return self._get('/v2/doumail/%s'%id)
 
-    @property
-    def inbox(self):
+    def inbox(self, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/doumail/inbox')
 
-    @property
-    def outbox(self):
+    def outbox(self, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/doumail/outbox')
    
-    @property
-    def unread(self):
+    def unread(self, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/doumail/inbox/unread')
 
     def read(self, id):
