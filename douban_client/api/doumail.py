@@ -22,13 +22,15 @@ class Doumail(DoubanApiBase):
     def read(self, id):
         return self._put('/v2/doumail/%s'%id)
 
-    def read_by_ids(self, ids):
+    def reads(self, ids):
         return self._put('/v2/doumail/read', ids=ids)
 
     def delete(self, id):
         return self._delete('/v2/doumail/%s'%id)
 
-    def delete_by_ids(self, ids):
+    def deletes(self, ids):
+        if isinstance(ids, (tuple, list)):
+            ids = ','.join(ids)
         return self._post('/v2/doumail/delete', ids=ids)
 
     def new(self, title, content, receiver_id, captcha_token=None, captcha_string=None):

@@ -114,6 +114,15 @@ __广播 Miniblog__
 
 __豆邮 Doumail__
 ```
+# 以下 id 指豆邮数字 id
+获取一条豆邮 client.doumail.get(id)
+
+删除一条豆邮 client.doumail.delete(id)
+删除一批豆邮 client.doumail.deletes(ids) # ids: [id, id, id]
+
+收件箱中豆邮列表 client.doumail.inbox(start, count)
+发件箱中豆邮列表 client.doumail.outbox(start, count)
+未读豆邮列表 client.doumail.unread(start, count)
 
 ```
 
