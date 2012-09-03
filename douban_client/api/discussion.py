@@ -10,11 +10,11 @@ class Discussion(DoubanApiBase):
     def get(self, id):
         return self._get('/v2/discussion/%s'%id)
 
-    def new(self, target, id, title, content):
-        return self._post('/v2/%s/%s/discussions'%(target, id), title=title, content=content)
+    def new(self, target, target_id, title, content):
+        return self._post('/v2/%s/%s/discussions'%(target, target_id), title=title, content=content)
 
-    def list(self, target, id):
-        return self._get('/v2/%s/%s/discussions'%(target, id))
+    def list(self, target, target_id):
+        return self._get('/v2/%s/%s/discussions'%(target, target_id))
 
     def update(self, id, title, content):
         return self._put('/v2/discussion/%s'%id, title=title, content=content)

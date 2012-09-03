@@ -11,7 +11,7 @@ douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包�
 * 相册 Album
 * 图片 Photo
 * 线上活动 Online
-* 讨论区 Discussion
+* 论坛 Discussion
 ```
 
 正在进行开发中的接口有:
@@ -104,11 +104,11 @@ __广播 Miniblog__
 
 赞某广播 client.miniblog.like(id)
 取消赞某广播 client.miniblog.unlike(id)
-赞某广播用户列表 client.miniblog.liker(id)
+赞某广播用户列表 client.miniblog.likers(id)
 
 转发广播 client.miniblog.reshare(id)
 取消转发某广播 client.miniblog.unreshare(id)
-转发某广播的用户列表 client.miniblog.reshares(id)
+转发某广播的用户列表 client.miniblog.resharers(id)
 
 ```
 
@@ -188,6 +188,19 @@ __线上活动 Online__
 
 获取线上活动列表 client.online.list(cate, start, end) 
 
+```
+
+__论坛 Discussion__
+```
+# 以下 id 指论坛 id 
+# target 指相应产品线（如 online, review 等）
+# target_id 指相应产品 id
+获取帖子 client.discussion.get(id)
+发表帖子 client.discussion.new(target, target_id, title, content)
+更新帖子 client.discussion.update(id, title, content)
+删除帖子 client.discussion.delete(id)
+
+获取帖子列表 client.discussion.list(target, target_id)
 ```
 
 已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
