@@ -6,6 +6,7 @@ from api import DoubanApi
 class DoubanClient(DoubanApi):
 
     API_HOST = 'https://api.douban.com'
+
     AUTH_HOST = 'https://www.douban.com'
     TOKEN_URL = AUTH_HOST + '/service/auth2/token'
     AUTHORIZE_URL = AUTH_HOST + '/service/auth2/auth'
@@ -24,8 +25,12 @@ class DoubanClient(DoubanApi):
     def authorize_url(self):
         return self.client.auth_code.authorize_url(redirect_uri=self.redirect_uri, scope=self.scope)
 
-    def auth_by_code(self, code):
+    def auth_with_code(self, code):
         self.client = self.client.auth_code.get_token(code, redirect_uri=self.redirect_uri)
 
-    def auth_by_token(self, token):
+    def auth_with_token(self, token):
         self.client = AccessToken(self.client, token)
+
+    def auth_with_password(self, username, password, **opt):
+        self.client = self.client.password.get_token(username=username, 
+                           password=password, redirect_uri=self.redirect_uri, **opt)

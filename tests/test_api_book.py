@@ -6,6 +6,7 @@ class TestApiBook(DoubanClientTestBase):
     def setUp(self):
         super(TestApiBook, self).setUp()
         self.user_id = '40774605'
+        self.book_id = '11542577'
 
 
 if __name__ == '__main__':

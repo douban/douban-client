@@ -25,6 +25,7 @@ SCOPE_MAP = {
              'photo': ['community_basic_photo', 'community_advanced_photo'],
              'music': ['music_basic_r', 'music_basic_w'],
              'movie': ['movie_basic_r', 'movie_basic_w'],
+             'book': ['book_basic_r', 'book_basic_w'],
             }
 
 SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
@@ -32,16 +33,16 @@ SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
 def get_client():
     client = DoubanClient(KEY, SECRET, CALLBACK, SCOPE)
 
-    token = 'bc7b9f5223a1cc1b3572ddf66ae56451'
+    token = '68fa2b3a21d0033e3aee81ae657009ba'
 
     if token:
-        client.auth_by_token(token) 
+        client.auth_with_token(token) 
     else:
         print 'Go to the following link in your browser:' 
         print client.authorize_url
 
         code = raw_input('Enter the verification code and hit ENTER when you\'re done:')
-        client.auth_by_code(code)
+        client.auth_with_code(code)
         print client.client.token
     return client
 

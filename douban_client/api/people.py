@@ -42,7 +42,7 @@ class People(DoubanApiBase):
         return self._get('/shuo/users/%s/follow_in_common'%id, start=start, count=count)
 
     # def following_followers_of(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-    #    return self._get('/shuo/users/%s/following_followers_of', start=start, count=count)
+    #     return self._get('/shuo/users/%s/following_followers_of', start=start, count=count)
 
 
     # def suggestions(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):

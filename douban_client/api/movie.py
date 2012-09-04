@@ -6,5 +6,3 @@ class Movie(DoubanApiBase):
 
     def __repr__(self):
         return '<DoubanAPI Movie>'
-
-

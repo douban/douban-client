@@ -66,9 +66,9 @@ class TestApiPeople(DoubanClientTestBase):
         self.assertTrue(all([r.has_key('uid') for r in ret]))
 
 
-    def test_following_followers_of(self):
-        ret = self.client.people.following_followers_of('51789002')
-        print ret
+    # def test_following_followers_of(self):
+    #     ret = self.client.people.following_followers_of('51789002')
+    #     print ret
 
 
     # def test_suggestions(self):
