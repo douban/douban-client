@@ -77,17 +77,17 @@ API_SECRET = 'your api secret'
 # 获取权限需要指定相应的 scope，请注意!!
 SCOPE = 'shuo_basic_r,shuo_basic_w'
 
-client = DoubanClient(API_KEY, API_SECRET, SCOPE)
+client = DoubanClient(API_KEY, API_SECRET, your_redirect_uri, SCOPE)
 
 # 以下方式 2 选 1:
 # 引导用户授权
 print 'Go to the following link in your browser:' 
 print client.authorize_url
 code = raw_input('Enter the verification code:')
-client.auth_by_code(code)
+client.auth_with_code(code)
 
 # 如果有之前有 token，则可以
-client.auth_by_token(token)
+client.auth_with_token(token)
 
 </code></pre>
 
