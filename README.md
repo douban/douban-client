@@ -85,7 +85,7 @@ count: 20
 ```
 
 __用户 People__
-``` python
+```
 # 以下 id 指用户数字 id
 当前用户 client.people.me
 指定用户 client.people.get(id) 
@@ -101,7 +101,7 @@ __用户 People__
 ```
 
 __广播 Miniblog__
-``` python
+```
 # 以下 id 指广播数字 id
 当前用户Timeline client.miniblog.home_timeline(count)
 指定用户Timeline client.miniblog.user_timeline(user_id, count)
@@ -126,7 +126,7 @@ __广播 Miniblog__
 ```
 
 __豆邮 Doumail__
-``` python
+```
 # 以下 id 指豆邮数字 id
 获取一条豆邮 client.doumail.get(id)
 
@@ -140,7 +140,7 @@ __豆邮 Doumail__
 ```
 
 __日记 Note__
-``` python
+```
 # 以下 id 指日记数字 id
 获取一条日记 client.note.get(id)
 新写一条日记 client.note.new(title, content)
@@ -156,7 +156,7 @@ __日记 Note__
 ```
 
 __相册 Album__
-``` python
+```
 # 以下 id 指相册数字 id
 获取一个相册 client.album.get(id)
 新建一个相册 client.album.new(title, desc) # desc 描述文字
@@ -169,7 +169,7 @@ __相册 Album__
 ```
 
 __图片 Photo__
-``` python
+```
 # 以下 id 指图片数字 id
 获取一张图片 client.photo.get(id)
 上传一张图片 client.photo.new(album_id, image) # image = open('/path/pic.png')
@@ -182,7 +182,7 @@ __图片 Photo__
 ```
 
 __线上活动 Online__
-``` python
+```
 # 以下 id 指线上活动数字 id
 # begin_time, end_time 格式为 '%Y-%m-%d %H:%M:%S'
 # cate 可选值: day, week, latest
@@ -204,7 +204,7 @@ __线上活动 Online__
 ```
 
 __论坛 Discussion__
-``` python
+```
 # 以下 id 指论坛 id 
 # target 指相应产品线（如 online, review 等）
 # target_id 指相应产品 id
