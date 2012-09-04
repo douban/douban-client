@@ -24,6 +24,7 @@ SCOPE_MAP = {
              'online': ['community_basic_online', 'community_advanced_online'],
              'photo': ['community_basic_photo', 'community_advanced_photo'],
              'music': ['music_basic_r', 'music_basic_w'],
+             'movie': ['movie_basic_r', 'movie_basic_w'],
             }
 
 SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
@@ -31,7 +32,7 @@ SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
 def get_client():
     client = DoubanClient(KEY, SECRET, CALLBACK, SCOPE)
 
-    token = 'cf8a3ed0772e12546e9ebc71658a36fc'
+    token = 'bc7b9f5223a1cc1b3572ddf66ae56451'
 
     if token:
         client.auth_by_token(token) 

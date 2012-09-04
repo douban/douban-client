@@ -63,6 +63,19 @@ client.auth_by_token(token)
 
 至此，已经完成 OAuth 2.0 授权。
 
+#### Douban API v2 说明
+```
+1. 豆瓣Api V2认证统一使用OAuth2
+2. 数据返回格式统一使用json，GData不再使用
+3. 需要授权的Api，需要加access_token的Header，并且使用https协议，限制具体见OAuth2文档
+4. 不需要授权公开api可以使用http，参数里面如果不包含apikey的话，限制单ip每分钟10次
+5. Api里面的通配符，:id代表纯数字， :name代表由数字+字母+[-_.]这些特殊字符
+6. 使用HTTP Status Code表示状态
+7. 列表参数使用start和count
+8. POST/PUT 时中文使用UTF-8编码
+9. 时间格式：yyyy-MM-dd HH:mm:ss, 如"2007-06-28 11:16:11"
+```
+
 #### 接口说明
 
 默认参数（参考豆瓣官方文档）:
@@ -72,7 +85,7 @@ count: 20
 ```
 
 __用户 People__
-```
+``` python
 # 以下 id 指用户数字 id
 当前用户 client.people.me
 指定用户 client.people.get(id) 
@@ -88,7 +101,7 @@ __用户 People__
 ```
 
 __广播 Miniblog__
-```
+``` python
 # 以下 id 指广播数字 id
 当前用户Timeline client.miniblog.home_timeline(count)
 指定用户Timeline client.miniblog.user_timeline(user_id, count)
@@ -113,7 +126,7 @@ __广播 Miniblog__
 ```
 
 __豆邮 Doumail__
-```
+``` python
 # 以下 id 指豆邮数字 id
 获取一条豆邮 client.doumail.get(id)
 
@@ -127,7 +140,7 @@ __豆邮 Doumail__
 ```
 
 __日记 Note__
-```
+``` python
 # 以下 id 指日记数字 id
 获取一条日记 client.note.get(id)
 新写一条日记 client.note.new(title, content)
@@ -143,7 +156,7 @@ __日记 Note__
 ```
 
 __相册 Album__
-```
+``` python
 # 以下 id 指相册数字 id
 获取一个相册 client.album.get(id)
 新建一个相册 client.album.new(title, desc) # desc 描述文字
@@ -156,7 +169,7 @@ __相册 Album__
 ```
 
 __图片 Photo__
-```
+``` python
 # 以下 id 指图片数字 id
 获取一张图片 client.photo.get(id)
 上传一张图片 client.photo.new(album_id, image) # image = open('/path/pic.png')
@@ -169,7 +182,7 @@ __图片 Photo__
 ```
 
 __线上活动 Online__
-```
+``` python
 # 以下 id 指线上活动数字 id
 # begin_time, end_time 格式为 '%Y-%m-%d %H:%M:%S'
 # cate 可选值: day, week, latest
@@ -191,7 +204,7 @@ __线上活动 Online__
 ```
 
 __论坛 Discussion__
-```
+``` python
 # 以下 id 指论坛 id 
 # target 指相应产品线（如 online, review 等）
 # target_id 指相应产品 id
