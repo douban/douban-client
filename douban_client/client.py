@@ -6,7 +6,6 @@ from api import DoubanApi
 class DoubanClient(DoubanApi):
 
     API_HOST = 'https://api.douban.com'
-
     AUTH_HOST = 'https://www.douban.com'
     TOKEN_URL = AUTH_HOST + '/service/auth2/token'
     AUTHORIZE_URL = AUTH_HOST + '/service/auth2/auth'

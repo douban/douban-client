@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .subject import Subject
 
-class Book(DoubanApiBase):
+class Book(Subject):
+
+    cate = 'book'
 
     def __repr__(self):
         return '<DoubanAPI Book>'
 
-    def get(self, id):
-        return self._get('/v2/book/%s'%id)
-
+    def isbn(self, isbn_id):
+        return self._get('/v2/book/isbn/%s'%isbn_id)

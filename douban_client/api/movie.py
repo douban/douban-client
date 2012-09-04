@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .subject import Subject
 
-class Movie(DoubanApiBase):
+class Movie(Subject):
+
+    cate = 'movie'
 
     def __repr__(self):
         return '<DoubanAPI Movie>'
+
+    def imdb(self, imdb_id):
+        return self._get('/v2/movie/imdb/%s'%imdb_id)
