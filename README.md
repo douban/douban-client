@@ -10,6 +10,9 @@ douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包�
 * 日记 Note
 * 相册 Album
 * 图片 Photo
+* 读书 Book
+* 电影 Movie
+* 音乐 Music
 * 线上活动 Online
 * 论坛 Discussion
 ```
@@ -18,9 +21,6 @@ douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包�
 ```
 * 豆瓣猜 Guess
 * 同城活动 Event
-* 音乐 Music
-* 电影 Movie
-* 图书 Book
 * 回复 Comment
 ```
 
@@ -178,6 +178,62 @@ __图片 Photo__
 
 喜欢一张图片 client.photo.like(id)
 取消喜欢一张图片 client.photo.unlike(id)
+
+```
+
+__读书 Book__
+```
+# 以下 id 指图书条目数字 id
+# q: 关键词, tag: 标签
+获取图书信息 client.book.get(id)
+通过isbn获取图书信息 client.book.isbn(isbn_number)
+搜索图书信息 client.book.search(q, tag, start, count) 
+
+获取图书标签 client.book.tags(id)
+获取用户图书标签 client.book.tagged_list(user_id)
+
+获取书评列表 client.book.reviews(id)
+获取一条书评 client.book.review.get(review_id)
+发表一条书评 client.book.review.new(id, title, content)
+更新一条书评 client.book.review.update(review_id, title, content)
+删除一条书评 client.book.review.delete(review_id)
+
+```
+
+__电影 Movie__
+```
+# 以下 id 指电影条目数字 id
+# q: 关键词, tag: 标签
+获取电影信息 client.movie.get(id)
+通过imdb获取电影信息 client.movie.imdb(imdb_number)
+搜索电影信息 client.movie.search(q, tag, start, count) 
+
+获取电影标签 client.movie.tags(id)
+获取用户电影标签 client.movie.tagged_list(user_id)
+
+获取影评列表 client.movie.reviews(id)
+获取一条影评 client.movie.review.get(review_id)
+发表一条影评 client.movie.review.new(id, title, content)
+更新一条影评 client.movie.review.update(review_id, title, content)
+删除一条影评 client.movie.review.delete(review_id)
+
+```
+
+__音乐 Music__
+```
+# 以下 id 指音乐条目数字 id
+# q: 关键词, tag: 标签
+获取音乐信息 client.music.get(id)
+搜索音乐信息 client.music.search(q, tag, start, count) 
+
+获取音乐标签 client.music.tags(id)
+获取用户音乐标签 client.music.tagged_list(user_id)
+
+获取乐评列表 client.music.reviews(id)
+获取一条乐评 client.music.review.get(review_id)
+发表一条乐评 client.music.review.new(id, title, content)
+更新一条乐评 client.music.review.update(review_id, title, content)
+删除一条乐评 client.music.review.delete(review_id)
 
 ```
 
