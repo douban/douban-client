@@ -101,7 +101,9 @@ __用户 People__
 加入黑名单 client.people.block(id)
 ```
 <http://developers.douban.com/wiki/?title=user_v2>
+
 <http://developers.douban.com/wiki/?title=community_1_shuo#user_info>
+
 
 __广播 Miniblog__
 ```
@@ -316,7 +318,9 @@ __豆瓣猜 Guess__
 猜你喜欢的线上活动  client.guess.online(user_id)
 ```
 <http://developers.douban.com/wiki/?title=note_v2#get_rec_list>
+
 <http://developers.douban.com/wiki/?title=photo_v2#album_guesses>
+
 <http://developers.douban.com/wiki/?title=online_v2#guesslist>
 
 已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
