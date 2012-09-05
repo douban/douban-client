@@ -338,8 +338,8 @@ __论坛 Discussion__
 __豆瓣猜 Guess__
 ```
 猜你喜欢的日记      client.guess.notes(user_id)
-猜你喜欢的相册      client.guess.album(user_id)
-猜你喜欢的线上活动  client.guess.online(user_id)
+猜你喜欢的相册      client.guess.albums(user_id)
+猜你喜欢的线上活动  client.guess.onlines(user_id)
 ```
 <http://developers.douban.com/wiki/?title=note_v2#get_rec_list>
 
