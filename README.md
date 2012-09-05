@@ -85,7 +85,6 @@ count: 20
 ```
 所有返回数据以豆瓣官方文档为准，各接口末尾处均有相应链接入口。
 
-***
 
 __用户 People__
 ```
@@ -107,7 +106,6 @@ __用户 People__
 <http://developers.douban.com/wiki/?title=community_1_shuo#user_info>
 
 
-***
 
 __广播 Miniblog__
 ```
@@ -135,7 +133,7 @@ __广播 Miniblog__
 ```
 <http://developers.douban.com/wiki/?title=community_1_shuo>
 
-***
+
 
 __豆邮 Doumail__
 ```
@@ -152,7 +150,7 @@ __豆邮 Doumail__
 ```
 <http://developers.douban.com/wiki/?title=doumail_v2>
 
-***
+
 
 __日记 Note__
 ```
@@ -171,7 +169,7 @@ __日记 Note__
 ```
 <http://developers.douban.com/wiki/?title=doumail_v2>
 
-***
+
 
 __相册 Album__
 ```
@@ -187,7 +185,7 @@ __相册 Album__
 ```
 <http://developers.douban.com/wiki/?title=photo_v2#get_album>
 
-***
+
 
 __图片 Photo__
 ```
@@ -203,7 +201,7 @@ __图片 Photo__
 ```
 <http://developers.douban.com/wiki/?title=photo_v2#get_photo>
 
-***
+
 
 __读书 Book__
 ```
@@ -225,7 +223,8 @@ __读书 Book__
 ```
 <http://developers.douban.com/wiki/?title=book_v2>
 
-***
+
+
 __电影 Movie__
 ```
 # 以下 id 指电影条目数字 id
@@ -246,7 +245,7 @@ __电影 Movie__
 ```
 <http://developers.douban.com/wiki/?title=movie_v2>
 
-***
+
 
 __音乐 Music__
 ```
@@ -267,7 +266,7 @@ __音乐 Music__
 ```
 <http://developers.douban.com/wiki/?title=music_v2>
 
-***
+
 
 __线上活动 Online__
 ```
@@ -292,7 +291,7 @@ __线上活动 Online__
 ```
 <http://developers.douban.com/wiki/?title=online_v2>
 
-***
+
 
 __同城活动 Event__
 ```
@@ -318,7 +317,7 @@ __同城活动 Event__
 ```
 <http://developers.douban.com/wiki/?title=event_v2>
 
-***
+
 
 __论坛 Discussion__
 ```
@@ -334,7 +333,7 @@ __论坛 Discussion__
 ```
 <http://developers.douban.com/wiki/?title=discussion_v2>
 
-***
+
 
 __豆瓣猜 Guess__
 ```
@@ -347,6 +346,9 @@ __豆瓣猜 Guess__
 <http://developers.douban.com/wiki/?title=photo_v2#album_guesses>
 
 <http://developers.douban.com/wiki/?title=online_v2#guesslist>
+
+
+
 
 已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
