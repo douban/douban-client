@@ -14,13 +14,13 @@ douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包�
 * 电影 Movie
 * 音乐 Music
 * 线上活动 Online
+* 同城活动 Event
 * 论坛 Discussion
+* 豆瓣猜 Guess
 ```
 
 正在进行开发中的接口有:
 ```
-* 豆瓣猜 Guess
-* 同城活动 Event
 * 回复 Comment
 ```
 
@@ -83,6 +83,7 @@ client.auth_with_token(token)
 start: 0
 count: 20
 ```
+所有返回数据以豆瓣官方文档为准，各接口末尾处均有相应链接入口。
 
 __用户 People__
 ```
@@ -99,6 +100,8 @@ __用户 People__
 共同关注 client.people.follow_in_common(id, start,count) 
 加入黑名单 client.people.block(id)
 ```
+<http://developers.douban.com/wiki/?title=user_v2>
+<http://developers.douban.com/wiki/?title=community_1_shuo#user_info>
 
 __广播 Miniblog__
 ```
@@ -124,6 +127,7 @@ __广播 Miniblog__
 转发某广播的用户列表 client.miniblog.resharers(id)
 
 ```
+<http://developers.douban.com/wiki/?title=community_1_shuo>
 
 __豆邮 Doumail__
 ```
@@ -138,6 +142,7 @@ __豆邮 Doumail__
 未读豆邮列表 client.doumail.unread(start, count)
 
 ```
+<http://developers.douban.com/wiki/?title=doumail_v2>
 
 __日记 Note__
 ```
@@ -154,6 +159,7 @@ __日记 Note__
 获取用户喜欢的日记列表 client.note.liked_list(user_id, start, count)
 
 ```
+<http://developers.douban.com/wiki/?title=doumail_v2>
 
 __相册 Album__
 ```
@@ -167,6 +173,7 @@ __相册 Album__
 获取相册图片列表 client.album.photos(id)
 
 ```
+<http://developers.douban.com/wiki/?title=photo_v2#get_album>
 
 __图片 Photo__
 ```
@@ -180,6 +187,7 @@ __图片 Photo__
 取消喜欢一张图片 client.photo.unlike(id)
 
 ```
+<http://developers.douban.com/wiki/?title=photo_v2#get_photo>
 
 __读书 Book__
 ```
@@ -199,6 +207,7 @@ __读书 Book__
 删除一条书评 client.book.review.delete(review_id)
 
 ```
+<http://developers.douban.com/wiki/?title=book_v2>
 
 __电影 Movie__
 ```
@@ -218,6 +227,7 @@ __电影 Movie__
 删除一条影评 client.movie.review.delete(review_id)
 
 ```
+<http://developers.douban.com/wiki/?title=movie_v2>
 
 __音乐 Music__
 ```
@@ -236,6 +246,7 @@ __音乐 Music__
 删除一条乐评 client.music.review.delete(review_id)
 
 ```
+<http://developers.douban.com/wiki/?title=music_v2>
 
 __线上活动 Online__
 ```
@@ -258,6 +269,31 @@ __线上活动 Online__
 获取线上活动列表 client.online.list(cate, start, end) 
 
 ```
+<http://developers.douban.com/wiki/?title=online_v2>
+
+__同城活动 Event__
+```
+# 以下 id 指同城活动 id 
+# q: 关键词, loc: 城市
+# day_type: future, week, weekend, today, tomorrow
+# type: all,music, film, drama, commonweal, salon, \
+#       exhibition, party, sports, travel, others
+获取同城活动 client.event.get(id)
+搜索同城活动 client.event.search(q, loc, start, count)
+
+对同城活动感兴趣 client.event.wish(id)
+取消同城活动兴趣 client.event.unwish(id)
+
+某同城活动参加者 client.event.participants(id, start, count)
+某同城活动感兴趣者 client.event.wishers(id, start, count)
+
+获取用户创建过的同城活动 client.event.owned(user_id, start, count)
+获取用户参加过的同城活动 client.event.participated(user_id, start, count)
+获取用户感兴趣的同城活动 client.event.wished(user_id, start, count)
+
+获取同城活动列表 client.event.list(loc, day_type, type, start, count)
+```
+<http://developers.douban.com/wiki/?title=event_v2>
 
 __论坛 Discussion__
 ```
@@ -271,6 +307,17 @@ __论坛 Discussion__
 
 获取帖子列表 client.discussion.list(target, target_id)
 ```
+<http://developers.douban.com/wiki/?title=discussion_v2>
+
+__豆瓣猜 Guess__
+```
+猜你喜欢的日记      client.guess.notes(user_id)
+猜你喜欢的相册      client.guess.album(user_id)
+猜你喜欢的线上活动  client.guess.online(user_id)
+```
+<http://developers.douban.com/wiki/?title=note_v2#get_rec_list>
+<http://developers.douban.com/wiki/?title=photo_v2#album_guesses>
+<http://developers.douban.com/wiki/?title=online_v2#guesslist>
 
 已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
