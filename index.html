@@ -44,14 +44,14 @@
 * 电影 Movie
 * 音乐 Music
 * 线上活动 Online
+* 同城活动 Event
 * 论坛 Discussion
+* 豆瓣猜 Guess
 </code></pre>
 
 <p>正在进行开发中的接口有:</p>
 
-<pre><code>* 豆瓣猜 Guess
-* 同城活动 Event
-* 回复 Comment
+<pre><code>* 回复 Comment
 </code></pre>
 
 <h3>安装</h3>
@@ -114,6 +114,8 @@ client.auth_with_token(token)
 count: 20
 </code></pre>
 
+<p>所有返回数据以豆瓣官方文档为准，各接口末尾处均有相应链接入口。</p>
+
 <p><strong>用户 People</strong></p>
 
 <pre><code># 以下 id 指用户数字 id
@@ -129,6 +131,10 @@ count: 20
 共同关注 client.people.follow_in_common(id, start,count) 
 加入黑名单 client.people.block(id)
 </code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=user_v2">http://developers.douban.com/wiki/?title=user_v2</a></p>
+
+<p><a href="http://developers.douban.com/wiki/?title=community_1_shuo#user_info">http://developers.douban.com/wiki/?title=community_1_shuo#user_info</a></p>
 
 <p><strong>广播 Miniblog</strong></p>
 
@@ -155,6 +161,8 @@ count: 20
 
 </code></pre>
 
+<p><a href="http://developers.douban.com/wiki/?title=community_1_shuo">http://developers.douban.com/wiki/?title=community_1_shuo</a></p>
+
 <p><strong>豆邮 Doumail</strong></p>
 
 <pre><code># 以下 id 指豆邮数字 id
@@ -168,6 +176,8 @@ count: 20
 未读豆邮列表 client.doumail.unread(start, count)
 
 </code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=doumail_v2">http://developers.douban.com/wiki/?title=doumail_v2</a></p>
 
 <p><strong>日记 Note</strong></p>
 
@@ -185,6 +195,8 @@ count: 20
 
 </code></pre>
 
+<p><a href="http://developers.douban.com/wiki/?title=doumail_v2">http://developers.douban.com/wiki/?title=doumail_v2</a></p>
+
 <p><strong>相册 Album</strong></p>
 
 <pre><code># 以下 id 指相册数字 id
@@ -198,6 +210,8 @@ count: 20
 
 </code></pre>
 
+<p><a href="http://developers.douban.com/wiki/?title=photo_v2#get_album">http://developers.douban.com/wiki/?title=photo_v2#get_album</a></p>
+
 <p><strong>图片 Photo</strong></p>
 
 <pre><code># 以下 id 指图片数字 id
@@ -210,6 +224,8 @@ count: 20
 取消喜欢一张图片 client.photo.unlike(id)
 
 </code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=photo_v2#get_photo">http://developers.douban.com/wiki/?title=photo_v2#get_photo</a></p>
 
 <p><strong>读书 Book</strong></p>
 
@@ -230,6 +246,8 @@ count: 20
 
 </code></pre>
 
+<p><a href="http://developers.douban.com/wiki/?title=book_v2">http://developers.douban.com/wiki/?title=book_v2</a></p>
+
 <p><strong>电影 Movie</strong></p>
 
 <pre><code># 以下 id 指电影条目数字 id
@@ -249,6 +267,8 @@ count: 20
 
 </code></pre>
 
+<p><a href="http://developers.douban.com/wiki/?title=movie_v2">http://developers.douban.com/wiki/?title=movie_v2</a></p>
+
 <p><strong>音乐 Music</strong></p>
 
 <pre><code># 以下 id 指音乐条目数字 id
@@ -266,6 +286,8 @@ count: 20
 删除一条乐评 client.music.review.delete(review_id)
 
 </code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=music_v2">http://developers.douban.com/wiki/?title=music_v2</a></p>
 
 <p><strong>线上活动 Online</strong></p>
 
@@ -289,6 +311,33 @@ count: 20
 
 </code></pre>
 
+<p><a href="http://developers.douban.com/wiki/?title=online_v2">http://developers.douban.com/wiki/?title=online_v2</a></p>
+
+<p><strong>同城活动 Event</strong></p>
+
+<pre><code># 以下 id 指同城活动 id 
+# q: 关键词, loc: 城市
+# day_type: future, week, weekend, today, tomorrow
+# type: all,music, film, drama, commonweal, salon, \
+#       exhibition, party, sports, travel, others
+获取同城活动 client.event.get(id)
+搜索同城活动 client.event.search(q, loc, start, count)
+
+对同城活动感兴趣 client.event.wish(id)
+取消同城活动兴趣 client.event.unwish(id)
+
+某同城活动参加者 client.event.participants(id, start, count)
+某同城活动感兴趣者 client.event.wishers(id, start, count)
+
+获取用户创建过的同城活动 client.event.owned(user_id, start, count)
+获取用户参加过的同城活动 client.event.participated(user_id, start, count)
+获取用户感兴趣的同城活动 client.event.wished(user_id, start, count)
+
+获取同城活动列表 client.event.list(loc, day_type, type, start, count)
+</code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=event_v2">http://developers.douban.com/wiki/?title=event_v2</a></p>
+
 <p><strong>论坛 Discussion</strong></p>
 
 <pre><code># 以下 id 指论坛 id 
@@ -301,6 +350,21 @@ count: 20
 
 获取帖子列表 client.discussion.list(target, target_id)
 </code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=discussion_v2">http://developers.douban.com/wiki/?title=discussion_v2</a></p>
+
+<p><strong>豆瓣猜 Guess</strong></p>
+
+<pre><code>猜你喜欢的日记      client.guess.notes(user_id)
+猜你喜欢的相册      client.guess.album(user_id)
+猜你喜欢的线上活动  client.guess.online(user_id)
+</code></pre>
+
+<p><a href="http://developers.douban.com/wiki/?title=note_v2#get_rec_list">http://developers.douban.com/wiki/?title=note_v2#get_rec_list</a></p>
+
+<p><a href="http://developers.douban.com/wiki/?title=photo_v2#album_guesses">http://developers.douban.com/wiki/?title=photo_v2#album_guesses</a></p>
+
+<p><a href="http://developers.douban.com/wiki/?title=online_v2#guesslist">http://developers.douban.com/wiki/?title=online_v2#guesslist</a></p>
 
 <p>已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <a href="https://github.com/liluo/douban-client/tree/master/tests">https://github.com/liluo/douban-client/tree/master/tests</a></p>
 
