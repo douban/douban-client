@@ -20,7 +20,7 @@ class Doumail(DoubanApiBase):
         return self._get('/v2/doumail/inbox/unread')
 
     def read(self, id):
-        return self._put('/v2/doumail/%s'%id)
+        return self._put('/v2/doumail/%s'%id, key='key')
 
     def reads(self, ids):
         if isinstance(ids, (list, tuple)):

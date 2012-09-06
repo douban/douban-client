@@ -7,7 +7,7 @@ class TestApiDoumail(DoubanClientTestBase):
     def setUp(self):
         super(TestApiDoumail, self).setUp()
         self.user_id = '51789002'
-        self.doumail_id = '263959257'
+        self.doumail_id = '263891152'
         self.doumail_ids = ['265897597', '265897596', '265897595']
 
     def _new_doumail(self):
@@ -49,12 +49,14 @@ class TestApiDoumail(DoubanClientTestBase):
     
     def test_read_doumail(self):
         ret = self.client.doumail.read(self.doumail_id)
-        print ret
+        
+        self.assertEqual('R', ret['status'])
     
     def test_reads_doumail(self):
         ret = self.client.doumail.reads(self.doumail_ids)
-        print ret
 
+        self.assertTrue(isinstance(ret, dict))
+        self.assertTrue(isinstance(ret['mails'], list))
 
     def test_delete_doumail(self):
         doumail = self.client.doumail.inbox()
