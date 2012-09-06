@@ -45,7 +45,20 @@ class Miniblog(DoubanApiBase):
         return self._get('/shuo/v2/statuses/%s/reshare'%id)
 
     def comments(self, id):
-        return self._get('/shuo/v2/statuses/%s/commetns'%id)
+        return self._get('/shuo/v2/statuses/%s/comments'%id)
 
-    def comment(self, text):
-        return self._post('/shuo/v2/statuses/%s/commetns'%id)
+    @property
+    def comment(self):
+        return MiniblogComment(self.client)
+
+
+class MiniblogComment(DoubanApiBase):
+    
+    def new(self, miniblog_id, text):
+        return self._post('/shuo/v2/statuses/%s/comments'%miniblog_id, text=text)
+
+    def get(self, id):
+        return self._get('/shuo/v2/statuses/comment/%s'%id)
+
+    def delete(self, id):
+        return self._delete('/shuo/v2/statuses/comment/%s'%id)

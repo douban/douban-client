@@ -9,6 +9,8 @@ class TestApiMiniblog(DoubanClientTestBase):
         super(TestApiMiniblog, self).setUp()
         self.user_id = '40774605'
         self.miniblog_id = '999242853'
+        self.comment = uuid4().hex
+        self.comment_id = '140907103'
 
     def _gen_text(self):
         return 'test miniblog %s by douban-client'% uuid4().hex
@@ -96,6 +98,28 @@ class TestApiMiniblog(DoubanClientTestBase):
         # reshareders
         ret = self.client.miniblog.reshareders(mid)
         self.assertTrue(isinstance(ret, list))
+
+    def test_get_miniblog_comments(self):
+        ret = self.client.miniblog.comments(self.miniblog_id)
+
+        self.assertTrue(isinstance(ret, list))
+        self.assertTrue(all([r.has_key('user') for r in ret]))
+
+    def test_new_delete_miniblog_comment(self):
+        # new
+        ret = self.client.miniblog.comment.new(self.miniblog_id, self.comment)
+    
+        self.assertEqual(self.comment, ret['text'])
+
+        # delete
+        comment_id = ret['id']
+        ret = self.client.miniblog.comment.delete(comment_id)
+        self.assertEqual(self.comment, ret['text'])
+
+    def test_get_miniblog_comment(self):
+        ret = self.client.miniblog.comment.get(self.comment_id)
+
+        self.assertEqual('456', ret['text'])
 
 if __name__ == '__main__':
     main()

@@ -16,12 +16,8 @@ douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包�
 * 线上活动 Online
 * 同城活动 Event
 * 论坛 Discussion
-* 豆瓣猜 Guess
-```
-
-正在进行开发中的接口有:
-```
 * 回复 Comment
+* 豆瓣猜 Guess
 ```
 
 ### 安装
@@ -93,6 +89,7 @@ __用户 People__
 指定用户 client.people.get(id) 
 搜索用户 client.people.search(q)       # q: 搜索的关键词
 
+# 此处是将广播关系接口放置到用户
 关注用户 client.people.follow(id)
 取消关注 client.people.unfollow(id)
 粉丝信息 client.people.followers(id, start, count)
@@ -116,18 +113,19 @@ __广播 Miniblog__
 
 获取一条广播 client.miniblog.get(id)
 新写一条广播 client.miniblog.new(text)
-新写一条带图片的广播 client.miniblog.new(text, image=open('/path/pic.png'))
+新写图片广播 client.miniblog.new(text, image=open('/path/pic.png'))
 删除一条广播 client.miniblog.delete(id)
 
 获取某广播回复列表 client.miniblog.comments(id)
-回复某条广播 client.miniblog.comment(text)
+回复某条广播       client.miniblog.comment.new(id, text)
+获取某条广播回复   client.miniblog.comment.get(comment_id)
+删除某条广播回复   client.miniblog.comment.delete(comment_id)
 
 赞某广播 client.miniblog.like(id)
 取消赞某广播 client.miniblog.unlike(id)
 赞某广播用户列表 client.miniblog.likers(id)
 
 转发广播 client.miniblog.reshare(id)
-取消转发某广播 client.miniblog.unreshare(id)
 转发某广播的用户列表 client.miniblog.resharers(id)
 
 ```
@@ -138,14 +136,19 @@ __广播 Miniblog__
 __豆邮 Doumail__
 ```
 # 以下 id 指豆邮数字 id
-获取一条豆邮 client.doumail.get(id)
+# 豆邮发送过多会需要验证，请注意
+获取一封豆邮 client.doumail.get(id)
+新写一封豆邮 client.doumail.new(title, content, receiver_id)
 
-删除一条豆邮 client.doumail.delete(id)
-删除一批豆邮 client.doumail.deletes(ids) # ids: [id, id, id]
+标记一封豆邮 client.doumail.read(id)
+批量标记豆邮 client.doumail.reads(ids) # ids 为 list
 
-收件箱中豆邮列表 client.doumail.inbox(start, count)
-发件箱中豆邮列表 client.doumail.outbox(start, count)
-未读豆邮列表 client.doumail.unread(start, count)
+删除一封豆邮 client.doumail.delete(id)
+批量删除豆邮 client.doumail.deletes(ids) # ids: [id, id, id]
+
+豆邮收件箱列表 client.doumail.inbox(start, count)
+豆邮发件箱列表 client.doumail.outbox(start, count)
+未读豆邮列表   client.doumail.unread(start, count)
 
 ```
 <http://developers.douban.com/wiki/?title=doumail_v2>
@@ -155,16 +158,22 @@ __豆邮 Doumail__
 __日记 Note__
 ```
 # 以下 id 指日记数字 id
-获取一条日记 client.note.get(id)
-新写一条日记 client.note.new(title, content)
-更新一条日记 client.note.update(title, content)
-删除一条日记 client.note.delete(id)
+# format: html_full, html_short, abstract, text，默认为text
+获取一篇日记 client.note.get(id, format='text')
+新写一篇日记 client.note.new(title, content)
+更新一篇日记 client.note.update(title, content)
+删除一篇日记 client.note.delete(id)
 
-喜欢一条日记 client.note.like(id)
-取消喜欢一条日记 client.note.unlike(id)
+喜欢一篇日记     client.note.like(id)
+取消喜欢一篇日记 client.note.unlike(id)
 
-获取用户日记列表 client.note.list(user_id, start, count)
+获取用户日记列表       client.note.list(user_id, start, count)
 获取用户喜欢的日记列表 client.note.liked_list(user_id, start, count)
+
+获取回复列表  client.note.comments(id, start, count)
+新加一条回复  client.note.comment.new(id, content)
+获取一条回复  client.note.comment.get(comment_id)
+删除一条回复  client.note.comment.delete(comment_id)
 
 ```
 <http://developers.douban.com/wiki/?title=doumail_v2>
@@ -174,13 +183,18 @@ __日记 Note__
 __相册 Album__
 ```
 # 以下 id 指相册数字 id
+# desc 描述文字
 获取一个相册 client.album.get(id)
-新建一个相册 client.album.new(title, desc) # desc 描述文字
+新建一个相册 client.album.new(title, desc)
+更新一个相册 client.album.update(id, title, desc)
 删除一个相册 client.album.delete(id)
 
-获取用户相册列表 client.album.list(user_id)
-获取用户喜欢相册列表 client.album.liked_list(user_id)
-获取相册图片列表 client.album.photos(id)
+获取用户相册列表 client.album.list(user_id, start, count)
+用户喜欢相册列表 client.album.liked_list(user_id, start, count)
+获取相册图片列表 client.album.photos(id, start, count)
+
+喜欢一个相册 client.album.like(id)
+取消喜欢相册 client.album.unlike(id)
 
 ```
 <http://developers.douban.com/wiki/?title=photo_v2#get_album>
@@ -196,8 +210,12 @@ __图片 Photo__
 删除一条图片 client.photo.delete(id)
 
 喜欢一张图片 client.photo.like(id)
-取消喜欢一张图片 client.photo.unlike(id)
+取消喜欢图片 client.photo.unlike(id)
 
+获取回复列表  client.photo.comments(id, start, count)
+新加一条回复  client.photo.comment.new(id, content)
+获取一条回复  client.photo.comment.get(comment_id)
+删除一条回复  client.photo.comment.delete(comment_id)
 ```
 <http://developers.douban.com/wiki/?title=photo_v2#get_photo>
 
@@ -207,12 +225,12 @@ __读书 Book__
 ```
 # 以下 id 指图书条目数字 id
 # q: 关键词, tag: 标签
-获取图书信息 client.book.get(id)
-通过isbn获取图书信息 client.book.isbn(isbn_number)
-搜索图书信息 client.book.search(q, tag, start, count) 
+获取一本图书信息 client.book.get(id)
+通过isbn获取信息 client.book.isbn(isbn_number)
+搜索图书信息     client.book.search(q, tag, start, count) 
 
 获取图书标签 client.book.tags(id)
-获取用户图书标签 client.book.tagged_list(user_id)
+获取用户标签 client.book.tagged_list(user_id)
 
 发表一条书评 client.book.review.new(id, title, content)
 更新一条书评 client.book.review.update(review_id, title, content)
@@ -227,12 +245,12 @@ __电影 Movie__
 ```
 # 以下 id 指电影条目数字 id
 # q: 关键词, tag: 标签
-获取电影信息 client.movie.get(id)
-通过imdb获取电影信息 client.movie.imdb(imdb_number)
-搜索电影信息 client.movie.search(q, tag, start, count) 
+获取一部电影信息 client.movie.get(id)
+通过imdb获取电影 client.movie.imdb(imdb_number)
+搜索电影信息     client.movie.search(q, tag, start, count) 
 
 获取电影标签 client.movie.tags(id)
-获取用户电影标签 client.movie.tagged_list(user_id)
+获取用户标签 client.movie.tagged_list(user_id)
 
 发表一条影评 client.movie.review.new(id, title, content)
 更新一条影评 client.movie.review.update(review_id, title, content)
@@ -251,7 +269,7 @@ __音乐 Music__
 搜索音乐信息 client.music.search(q, tag, start, count) 
 
 获取音乐标签 client.music.tags(id)
-获取用户音乐标签 client.music.tagged_list(user_id)
+获取用户标签 client.music.tagged_list(user_id)
 
 发表一条乐评 client.music.review.new(id, title, content)
 更新一条乐评 client.music.review.update(review_id, title, content)
@@ -278,9 +296,17 @@ __线上活动 Online__
 喜欢一条线上活动 client.online.like(id)
 取消喜欢线上活动 client.online.unlike(id)
 
+获取线上活动图片列表 client.online.photos(id, start, count)
+上传图片到线上活动   client.online.upload(id, image) # image = open('xxx.jpg')
+
+获取线上活动讨论列表 client.online.discussions(id, start, count)
+在线上活动新发讨论   client.online.discussion.new(id, title, content)
+
 获取参加线上活动成员列表 client.online.participants(id, start, count)
 
 获取线上活动列表 client.online.list(cate, start, end) 
+获取参加过的活动 client.online.joined(user_id, start, count)
+获取组织过的活动 client.online.owned(user_id, start, count)
 
 ```
 <http://developers.douban.com/wiki/?title=online_v2>
@@ -297,10 +323,13 @@ __同城活动 Event__
 获取同城活动 client.event.get(id)
 搜索同城活动 client.event.search(q, loc, start, count)
 
+参加同城活动 client.event.join(id)
+取消参加活动 client.event.quit(id)
+
 对同城活动感兴趣 client.event.wish(id)
 取消同城活动兴趣 client.event.unwish(id)
 
-某同城活动参加者 client.event.participants(id, start, count)
+某同城活动参加者   client.event.participants(id, start, count)
 某同城活动感兴趣者 client.event.wishers(id, start, count)
 
 获取用户创建过的同城活动 client.event.owned(user_id, start, count)
@@ -315,7 +344,7 @@ __同城活动 Event__
 
 __论坛 Discussion__
 ```
-# 以下 id 指论坛 id 
+# 以下 id 指论坛帖子 id 
 # target 指相应产品线（如 online, review 等）
 # target_id 指相应产品 id
 获取帖子 client.discussion.get(id)
@@ -324,6 +353,11 @@ __论坛 Discussion__
 删除帖子 client.discussion.delete(id)
 
 获取帖子列表 client.discussion.list(target, target_id)
+
+获取回复列表 client.discussion.comments(id, start, count)
+新加一条回复 client.discussion.comment.new(id, content)
+获取某条回复 client.discussion.comment.get(comment_id)
+删除某条回复 client.discussion.comment.delete(comment_id)
 ```
 <http://developers.douban.com/wiki/?title=discussion_v2>
 
@@ -331,6 +365,7 @@ __论坛 Discussion__
 
 __豆瓣猜 Guess__
 ```
+# 这里是把分散日记，相册，线上活动猜放到一起了
 猜你喜欢的日记      client.guess.notes(user_id)
 猜你喜欢的相册      client.guess.albums(user_id)
 猜你喜欢的线上活动  client.guess.onlines(user_id)
@@ -342,9 +377,7 @@ __豆瓣猜 Guess__
 <http://developers.douban.com/wiki/?title=online_v2#guesslist>
 
 
-
-
-已实现的接口中单元测试覆盖超过 90%，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
+已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
 ### 联系
 * 使用 douban-client 过程中遇到 bug, 可以到 [Issues](https://github.com/liluo/douban-client/issues) 反馈
