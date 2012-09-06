@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .comment import Comment
 
 class Note(DoubanApiBase):
+
+    target = 'note'
 
     def __repr__(self):
         return '<DoubanAPI Note>'
@@ -10,6 +13,7 @@ class Note(DoubanApiBase):
     def new(self, title, content, privacy='public', can_reply='true'):
         return self._post('/v2/notes', 
                 title=title, content=content, privacy=privacy, can_reply=can_reply)
+    
     
     def get(self, id, format='text'):
         return self._get('/v2/note/%s'%id, format=format)
@@ -33,3 +37,9 @@ class Note(DoubanApiBase):
     def liked_list(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/note/people_notes/%s/liked'%user_id)
 
+    def comments(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
+        return Comment(self.client, self.target).list(id, start=start, count=count)
+
+    @property
+    def comment(self):
+        return Comment(self.client, self.target)

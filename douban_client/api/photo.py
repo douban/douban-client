@@ -5,6 +5,8 @@ from .comment import Comment
 
 class Photo(DoubanApiBase):
 
+    target = 'photo'
+
     def __repr__(self):
         return '<DoubanAPI Photo>'
 
@@ -25,3 +27,10 @@ class Photo(DoubanApiBase):
 
     def unlike(self, id):
         return self._delete('/v2/photo/%s/like'%id)
+
+    def comments(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
+        return Comment(self.client, self.target).list(id, start=start, count=count)
+
+    @property
+    def comment(self):
+        return Comment(self.client, self.target)

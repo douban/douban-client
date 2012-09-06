@@ -4,7 +4,7 @@ from .subject import Subject
 
 class Movie(Subject):
 
-    cate = 'movie'
+    target = 'movie'
 
     def __repr__(self):
         return '<DoubanAPI Movie>'

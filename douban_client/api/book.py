@@ -4,7 +4,7 @@ from .subject import Subject
 
 class Book(Subject):
 
-    cate = 'book'
+    target = 'book'
 
     def __repr__(self):
         return '<DoubanAPI Book>'

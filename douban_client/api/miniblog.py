@@ -41,7 +41,7 @@ class Miniblog(DoubanApiBase):
     def unreshare(self, id):
         return self._delete('/shuo/v2/statuses/%s/reshare'%id)
 
-    def resharers(self, id):
+    def reshareders(self, id):
         return self._get('/shuo/v2/statuses/%s/reshare'%id)
 
     def comments(self, id):

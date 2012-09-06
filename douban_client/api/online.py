@@ -47,15 +47,24 @@ class Online(DoubanApiBase):
         return self._get('/v2/online/%s/participants'%id, start=start, count=count)
 
     def discussions(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/online/%s/discussions', start=start, count=count)
+        return self._get('/v2/online/%s/discussions'%id, start=start, count=count)
+
+    @property
+    def discussion(self):
+        return OnlineDiscussion(self.client)
 
     def list(self, cate='day', start=DEFAULT_START, count=DEFAULT_COUNT):
         # cate: day, week, latest
         return self._get('/v2/onlines', cate=cate, start=start, count=count)
 
     def owned(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/online/people_onlines/%s/owned', start=start, count=count)
+        return self._get('/v2/online/people_onlines/%s/owned'%user_id, start=start, count=count)
 
     def joined(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/online/people_onlines/%s/', start=start, count=count)
+        return self._get('/v2/online/people_onlines/%s'%user_id, start=start, count=count)
 
+
+class OnlineDiscussion(DoubanApiBase):
+
+    def new(self, target_id, title, content):
+        return self._post('/v2/online/%s/discussions'%target_id, title=title, content=content)

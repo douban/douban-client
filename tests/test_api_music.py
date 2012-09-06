@@ -27,14 +27,14 @@ class TestApiMusic(DoubanClientTestBase):
         self.assertTrue(ret.has_key('count'))
         self.assertTrue(ret.has_key('total'))
 
-    def test_music_reviews(self):
-        ret = self.client.music.reviews(self.music_id)
+    # def test_music_reviews(self):
+    #     ret = self.client.music.reviews(self.music_id)
 
-        self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(isinstance(ret['reviews'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+    #     self.assertTrue(isinstance(ret, dict))
+    #     self.assertTrue(isinstance(ret['reviews'], list))
+    #     self.assertTrue(ret.has_key('start'))
+    #     self.assertTrue(ret.has_key('count'))
+    #     self.assertTrue(ret.has_key('total'))
 
     def test_music_tags(self):
         ret = self.client.music.tags(self.music_id)

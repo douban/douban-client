@@ -36,14 +36,14 @@ class TestApiBook(DoubanClientTestBase):
         self.assertTrue(ret.has_key('count'))
         self.assertTrue(ret.has_key('total'))
 
-    def test_book_reviews(self):
-        ret = self.client.book.reviews(self.book_id)
+    # def test_book_reviews(self):
+    #     ret = self.client.book.reviews(self.book_id)
 
-        self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(isinstance(ret['reviews'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+    #     self.assertTrue(isinstance(ret, dict))
+    #     self.assertTrue(isinstance(ret['reviews'], list))
+    #     self.assertTrue(ret.has_key('start'))
+    #     self.assertTrue(ret.has_key('count'))
+    #     self.assertTrue(ret.has_key('total'))
 
     def test_book_tags(self):
         ret = self.client.book.tags(self.book_id)

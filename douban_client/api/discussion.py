@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .comment import Comment
 
 class Discussion(DoubanApiBase):
+
+    target = 'discussion'
 
     def __repr__(self):
         return '<DoubanAPI Discussion>'
@@ -21,3 +24,10 @@ class Discussion(DoubanApiBase):
 
     def delete(self, id):
         return self._delete('/v2/discussion/%s'%id)
+
+    def comments(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
+        return Comment(self.client, self.target).list(id, start=start, count=count)
+
+    @property
+    def comment(self):
+        return Comment(self.client, self.target)

@@ -10,11 +10,14 @@ class TestApiDiscussion(DoubanClientTestBase):
         self.discussion_id = '48549097'
         self.target = 'online'
         self.target_id = '10903196'
+        self.comment_id = '12908803'
         
         tmp = uuid4().hex
 
         self.title = tmp
         self.content = tmp
+        self.comment_content = uuid4().hex
+        self.comment_update_content = uuid4().hex
 
     def _add_discussion(self):
         return self.client.discussion.new(self.target, self.target_id, self.title, self.content)
@@ -52,6 +55,31 @@ class TestApiDiscussion(DoubanClientTestBase):
         ret = self.client.discussion.list(self.target, self.target_id)
 
         self.assertTrue(isinstance(ret['discussions'], list))
+
+    def test_discussion_comments(self):
+        ret = self.client.discussion.comments(self.discussion_id)
+
+        self.assertTrue(isinstance(ret['comments'], list))
+
+    def test_get_discussion_comment(self):
+        ret = self.client.discussion.comment.get(self.discussion_id, self.comment_id)
+
+        self.assertEqual(self.comment_id, ret['id'])
+        self.assertTrue(ret.has_key('content'))
+
+    def test_new_delete_discussion_comment(self):
+        # new
+        ret = self.client.discussion.comment.new(self.discussion_id, self.comment_content)
+        
+        self.assertTrue(ret.has_key('id'))
+        self.assertTrue(ret.has_key('content'))
+
+        # delete
+        comment_id = ret['id']
+        ret = self.client.discussion.comment.delete(self.discussion_id, comment_id)
+
+        self.assertEqual({}, ret)
+        
 
 if __name__ == '__main__':
     main()

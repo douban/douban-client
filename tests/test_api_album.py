@@ -23,10 +23,11 @@ class TestApiAlbum(DoubanClientTestBase):
         self.assertTrue(ret.has_key('size'))
         self.assertTrue(ret.has_key('author'))
 
-    # def test_update_album(self):
-    #     new_title = uuid4().hex
-    #     ret = self.client.album.update(self.album_id, new_title)
-    #     self.assertEqual(new_title, ret['title'])
+    def test_update_album(self):
+        new_title = uuid4().hex
+        self.client.album.update(self.album_id, new_title, 'new_desc')
+        ret = self.client.album.get(self.album_id)
+        self.assertEqual(new_title, ret['title'])
 
     def test_delete_album(self):
         aid = self.client.album.new('test', desc='abcdefg')['id']
@@ -56,11 +57,15 @@ class TestApiAlbum(DoubanClientTestBase):
         self.assertTrue(ret.has_key('photos'))
         self.assertTrue(isinstance(ret['photos'], list))
 
-    # def test_like_album(self):
-    #     ret = self.client.album.like(self.album_id)
+    def test_like_album(self):
+        ret = self.client.album.like(self.album_id)
 
-    # def test_unlike_album(self):
-    #     ret = self.client.album.unlike(self.album_id)
+        self.assertEqual({}, ret)
+
+    def test_unlike_album(self):
+        ret = self.client.album.unlike(self.album_id)
+
+        self.assertEqual({}, ret)
 
 
 if __name__ == '__main__':

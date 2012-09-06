@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from uuid import uuid4
 from framework import DoubanClientTestBase, main
 
 class TestApiPhoto(DoubanClientTestBase):
@@ -8,6 +9,8 @@ class TestApiPhoto(DoubanClientTestBase):
         self.user_id = '40774605'
         self.album_id = '50201880'
         self.photo_id = '1692008281'
+        self.comment_id = '113934719'
+        self.comment_content = uuid4().hex
 
     def _add_photo(self):
         image = open('douban.png')
@@ -44,6 +47,28 @@ class TestApiPhoto(DoubanClientTestBase):
     def test_unlike_photo(self):
         ret = self.client.photo.unlike(self.photo_id)
         self.assertEqual({}, ret)
+
+    def test_photo_comments(self):
+        ret = self.client.photo.comments(self.photo_id)
+
+        self.assertTrue(isinstance(ret['comments'], list))
+
+    def test_get_photo_comment(self):
+        ret = self.client.photo.comment.get(self.photo_id, self.comment_id)
+
+        self.assertEqual(self.comment_id, ret['id'])
+        self.assertTrue(ret.has_key('content'))
+
+    def test_new_delete_photo_comment(self):
+        # new
+        ret = self.client.photo.comment.new(self.photo_id, self.comment_content)
+        
+        self.assertTrue(ret.has_key('id'))
+        self.assertTrue(ret.has_key('content'))
+
+        # delete
+        comment_id = ret['id']
+        ret = self.client.photo.comment.delete(self.photo_id, comment_id)
 
 
 if __name__ == '__main__':

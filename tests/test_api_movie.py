@@ -36,14 +36,14 @@ class TestApiMovie(DoubanClientTestBase):
         self.assertTrue(ret.has_key('count'))
         self.assertTrue(ret.has_key('total'))
 
-    def test_movie_reviews(self):
-        ret = self.client.movie.reviews(self.movie_id)
+    # def test_movie_reviews(self):
+    #     ret = self.client.movie.reviews(self.movie_id)
 
-        self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(isinstance(ret['reviews'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+    #     self.assertTrue(isinstance(ret, dict))
+    #     self.assertTrue(isinstance(ret['reviews'], list))
+    #     self.assertTrue(ret.has_key('start'))
+    #     self.assertTrue(ret.has_key('count'))
+    #     self.assertTrue(ret.has_key('total'))
 
     def test_movie_tags(self):
         ret = self.client.movie.tags(self.movie_id)

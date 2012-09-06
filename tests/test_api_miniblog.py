@@ -63,7 +63,7 @@ class TestApiMiniblog(DoubanClientTestBase):
 
         self.assertRaises(DoubanError, func, mid)
 
-    def test_miniblog_like(self):
+    def test_like_unlike_likers_miniblog(self):
         mb = self._new_miniblog()
         mid = mb['id']
 
@@ -76,14 +76,26 @@ class TestApiMiniblog(DoubanClientTestBase):
         ret = self.client.miniblog.likers(mid)
         self.assertTrue(isinstance(ret, list))
 
-    def test_reshare_miniblog(self):
-        # TODO
-        # mid = self.miniblog_id
+    def test_reshare_unreshare_resharers_miniblog(self):
+        mid = self.miniblog_id
 
-        # self.client.miniblog.reshare(mid)
+        # reshare
+        self.client.miniblog.reshare(mid)
+        ret = self.client.miniblog.get(mid)
+        reshared_count = ret['reshared_count']
+   
+        self.assertTrue(reshared_count > 0)
+
+        # unreshare
+        # 这个豆瓣广播还没有实现接口
+        # self.client.miniblog.unreshare(mid)
         # ret = self.client.miniblog.get(mid)
-        pass
+        #
+        #self.assertEqual(reshared_count-1, ret['reshared_count'])
 
+        # reshareders
+        ret = self.client.miniblog.reshareders(mid)
+        self.assertTrue(isinstance(ret, list))
 
 if __name__ == '__main__':
     main()

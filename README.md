@@ -214,7 +214,6 @@ __读书 Book__
 获取图书标签 client.book.tags(id)
 获取用户图书标签 client.book.tagged_list(user_id)
 
-获取书评列表 client.book.reviews(id)
 发表一条书评 client.book.review.new(id, title, content)
 更新一条书评 client.book.review.update(review_id, title, content)
 删除一条书评 client.book.review.delete(review_id)
@@ -235,7 +234,6 @@ __电影 Movie__
 获取电影标签 client.movie.tags(id)
 获取用户电影标签 client.movie.tagged_list(user_id)
 
-获取影评列表 client.movie.reviews(id)
 发表一条影评 client.movie.review.new(id, title, content)
 更新一条影评 client.movie.review.update(review_id, title, content)
 删除一条影评 client.movie.review.delete(review_id)
@@ -255,7 +253,6 @@ __音乐 Music__
 获取音乐标签 client.music.tags(id)
 获取用户音乐标签 client.music.tagged_list(user_id)
 
-获取乐评列表 client.music.reviews(id)
 发表一条乐评 client.music.review.new(id, title, content)
 更新一条乐评 client.music.review.update(review_id, title, content)
 删除一条乐评 client.music.review.delete(review_id)

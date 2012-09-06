@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from uuid import uuid4
 from datetime import datetime, timedelta
 from framework import DoubanClientTestBase, main
 
@@ -15,6 +16,8 @@ class TestApiOnline(DoubanClientTestBase):
         self.online_id = '11182611'
         self._title = 'api douban-client test'
         self._desc = 'api test, desc abcdefg hijklmn opq rst uvw xyz, now you see, i can create online.'
+        self.discussion_title = uuid4().hex
+        self.discussion_content = uuid4().hex
     
 
     def _add_online(self):
@@ -75,9 +78,9 @@ class TestApiOnline(DoubanClientTestBase):
         self.assertTrue(isinstance(ret['users'], list))
 
     def test_get_online_discussions(self):
-        # TODO
-        # ret = self.client.online.discussions(self.online_id)
-        pass
+        ret = self.client.online.discussions(self.online_id)
+
+        self.assertTrue(isinstance(ret['discussions'], list))
 
     def test_online_list(self):
         ret = self.client.online.list(cate='day')
@@ -85,15 +88,24 @@ class TestApiOnline(DoubanClientTestBase):
         self.assertTrue(ret.has_key('total'))
         self.assertTrue(isinstance(ret['onlines'], list))
 
-    # def test_owned_onlines(self):
-    #     # TODO
-    #     # ret = self.client.online.owned(self.user_id)
-    #     pass
+    def test_new_online_discussion(self):
+        ret = self.client.online.discussion.new(self.online_id, 
+                self.discussion_title, self.discussion_content)
 
-    # def test_joined_onlines(self):
-    #     # TODO
-    #     # ret = self.client.online.joined(self.user_id)
-    #     pass
+        self.assertTrue(self.discussion_title, ret['title'])
+        self.assertTrue(self.discussion_content, ret['content'])
+
+    def test_owned_onlines(self):
+        ret = self.client.online.owned(self.user_id)
+
+        self.assertTrue(ret.has_key('total'))
+        self.assertTrue(isinstance(ret['onlines'], list))
+
+    def test_joined_onlines(self):
+        ret = self.client.online.joined(self.user_id)
+
+        self.assertTrue(ret.has_key('total'))
+        self.assertTrue(isinstance(ret['onlines'], list))
 
 
 

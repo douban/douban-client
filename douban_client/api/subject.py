@@ -5,23 +5,23 @@ from .review import Review
 
 class Subject(DoubanApiBase):
 
-    cate = None
+    target = None
 
     def get(self, id):
-        return self._get('/v2/%s/%s'%(self.cate, id))
-
-    def reviews(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/%s/%s/reviews'%(self.cate, id), start=start, count=count)
+        return self._get('/v2/%s/%s'%(self.target, id))
 
     def search(self, q='', tag='', start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/%s/search'%self.cate, q=q, tag=tag, start=start, count=count)
+        return self._get('/v2/%s/search'%self.target, q=q, tag=tag, start=start, count=count)
 
     def tags(self, id):
-        return self._get('/v2/%s/%s/tags'%(self.cate, id))
+        return self._get('/v2/%s/%s/tags'%(self.target, id))
 
     def tagged_list(self, id):
-        return self._get('/v2/%s/people_tags/%s'%(self.cate, id))
+        return self._get('/v2/%s/people_tags/%s'%(self.target, id))
+
+    # def reviews(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
+    #     return Review(self.client, self.target).list(id, start=start, count=count)
 
     @property
     def review(self):
-        return Review(self.client, self.cate)
+        return Review(self.client, self.target)
