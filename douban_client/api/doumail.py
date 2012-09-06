@@ -23,6 +23,8 @@ class Doumail(DoubanApiBase):
         return self._put('/v2/doumail/%s'%id)
 
     def reads(self, ids):
+        if isinstance(ids, (list, tuple)):
+            ids = ','.join(ids)
         return self._put('/v2/doumail/read', ids=ids)
 
     def delete(self, id):
