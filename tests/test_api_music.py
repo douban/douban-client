@@ -77,13 +77,13 @@ class TestApiMusic(DoubanClientTestBase):
         self.assertEqual('OK', ret)
 
 
-    def test_get_music_review(self):
-        ret = self.client.music.review.get(self.review_id)
+    # def test_get_music_review(self):
+    #     ret = self.client.music.review.get(self.review_id)
 
-        self.assertTrue(isinstance(ret, dict))
-        self.assertEqual(ret['id'], self.review_id)
-        self.assertTrue(ret.has_key('rating'))
-        self.assertTrue(ret.has_key('author'))
+    #     self.assertTrue(isinstance(ret, dict))
+    #     self.assertEqual(ret['id'], self.review_id)
+    #     self.assertTrue(ret.has_key('rating'))
+    #     self.assertTrue(ret.has_key('author'))
 
 
 if __name__ == '__main__':

@@ -8,8 +8,8 @@ class Review(DoubanApiBase):
         self.client = client
         self.cate = cate
 
-    def get(self, id):
-        return self._get('/v2/%s/review/%s'%(self.cate, id)) 
+    # def get(self, id):
+    #     return self._get('/v2/%s/review/%s'%(self.cate, id)) 
 
     def new(self, id, title, content, rating=''):
         data = { self.cate: id,

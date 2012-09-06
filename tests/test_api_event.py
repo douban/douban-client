@@ -7,7 +7,7 @@ from framework import DoubanClientTestBase, main
 class TestApiEvent(DoubanClientTestBase):
     
     def setUp(self):
-        self.event_id = '17080169'
+        self.event_id = '17087697'
         self.user_id = '40774605'
         self.loc = '108288'
         self.participate_date = datetime.now().strftime('%Y-%m-%d')
@@ -63,10 +63,10 @@ class TestApiEvent(DoubanClientTestBase):
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['events'], list))
 
-    # def test_join_event(self):
-    #     ret = self.client.event.join(self.event_id, '2012-')
-    #     print ret
+    def test_join_event(self):
+        ret = self.client.event.join(self.event_id)
 
+        self.assertEqual(None, ret)
 
     def test_quit_event(self):
         ret = self.client.event.quit(self.event_id)
