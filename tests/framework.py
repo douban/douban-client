@@ -12,9 +12,9 @@ from douban_client import DoubanClient
 from douban_client.api.error import DoubanError
 
 
-KEY = '0af8d9bfca3f0c1a20ea8d3f5ebd244e'
-SECRET = 'bf620e8a501e18b6'
-CALLBACK = 'http://127.0.0.1:4567/oauth2/callback'
+KEY = ''
+SECRET = ''
+CALLBACK = ''
 
 SCOPE_MAP = {
              'basic': ['douban_basic_common', 'community_basic_user'],
@@ -34,7 +34,7 @@ SCOPE = ','.join(reduce(lambda x, y: x + y, SCOPE_MAP.values()))
 def get_client():
     client = DoubanClient(KEY, SECRET, CALLBACK, SCOPE)
 
-    token = 'ab4bf55199c0ead301e3dff4cd42c079'
+    token = ''
 
     if token:
         client.auth_with_token(token) 
