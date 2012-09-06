@@ -8,10 +8,10 @@ setup(
     version = '0.0.1',
     keywords = ('Douban', 'OAuth2', 'Douban API'),
     description = 'Python client library for Douban APIs (OAuth 2.0)',
-    long_description = open('README.rst').read(),
+    long_description = 'See http://liluo.github.com/douban-client',
     license = 'MIT License',
 
-    url = 'https://github.com/liluo/douban-client',
+    url = 'http://liluo.github.com/douban-client',
     author = 'liluo',
     author_email = 'i@liluo.org',
 
