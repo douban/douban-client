@@ -34,7 +34,7 @@
 
 <p>目前已完成的接口有：</p>
 
-<pre><code>* 用户 People
+<pre><code>* 用户 User
 * 广播 Miniblog
 * 豆邮 Doumail
 * 日记 Note
@@ -112,21 +112,21 @@ count: 20
 
 <p>所有返回数据以豆瓣官方文档为准，各接口末尾处均有相应链接入口。</p>
 
-<p><strong>用户 People</strong></p>
+<p><strong>用户 User</strong></p>
 
 <pre><code># 以下 id 指用户数字 id
-当前用户 client.people.me
-指定用户 client.people.get(id) 
-搜索用户 client.people.search(q)       # q: 搜索的关键词
+当前用户 client.user.me
+指定用户 client.user.get(id) 
+搜索用户 client.user.search(q)       # q: 搜索的关键词
 
 # 此处是将广播关系接口放置到用户
-关注用户 client.people.follow(id)
-取消关注 client.people.unfollow(id)
-粉丝信息 client.people.followers(id, start, count)
-关注信息 client.people.following(id, start, count) 
-关注关系 client.people.friendships(target_id, source_id) 
-共同关注 client.people.follow_in_common(id, start,count) 
-加入黑名单 client.people.block(id)
+关注用户 client.user.follow(id)
+取消关注 client.user.unfollow(id)
+粉丝信息 client.user.followers(id, start, count)
+关注信息 client.user.following(id, start, count) 
+关注关系 client.user.friendships(target_id, source_id) 
+共同关注 client.user.follow_in_common(id, start,count) 
+加入黑名单 client.user.block(id)
 </code></pre>
 
 <p><a href="http://developers.douban.com/wiki/?title=user_v2">http://developers.douban.com/wiki/?title=user_v2</a></p>
@@ -150,8 +150,8 @@ count: 20
 获取某条广播回复   client.miniblog.comment.get(comment_id)
 删除某条广播回复   client.miniblog.comment.delete(comment_id)
 
-赞某广播 client.miniblog.like(id)
-取消赞某广播 client.miniblog.unlike(id)
+赞广播 client.miniblog.like(id)
+取消赞 client.miniblog.unlike(id)
 赞某广播用户列表 client.miniblog.likers(id)
 
 转发广播 client.miniblog.reshare(id)
@@ -327,7 +327,7 @@ count: 20
 
 获取线上活动列表 client.online.list(cate, start, end) 
 获取参加过的活动 client.online.joined(user_id, start, count)
-获取组织过的活动 client.online.owned(user_id, start, count)
+获取创建过的活动 client.online.created(user_id, start, count)
 
 </code></pre>
 
@@ -381,23 +381,21 @@ count: 20
 
 <p><a href="http://developers.douban.com/wiki/?title=discussion_v2">http://developers.douban.com/wiki/?title=discussion_v2</a></p>
 
-<p><strong>豆瓣猜 Guess</strong></p>
-
-<pre><code># 这里是把分散日记，相册，线上活动猜放到一起了
-猜你喜欢的日记      client.guess.notes(user_id)
-猜你喜欢的相册      client.guess.albums(user_id)
-猜你喜欢的线上活动  client.guess.onlines(user_id)
-</code></pre>
-
-<p><a href="http://developers.douban.com/wiki/?title=note_v2#get_rec_list">http://developers.douban.com/wiki/?title=note_v2#get_rec_list</a></p>
-
-<p><a href="http://developers.douban.com/wiki/?title=photo_v2#album_guesses">http://developers.douban.com/wiki/?title=photo_v2#album_guesses</a></p>
-
-<p><a href="http://developers.douban.com/wiki/?title=online_v2#guesslist">http://developers.douban.com/wiki/?title=online_v2#guesslist</a></p>
-
 <p>已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <a href="https://github.com/liluo/douban-client/tree/master/tests">https://github.com/liluo/douban-client/tree/master/tests</a></p>
 
-<h3>联系</h3>
+<h3>Changelog</h3>
+
+<p><strong>v0.0.2 [2012-09-07]</strong></p>
+
+<ul>
+<li>与豆瓣官网同步，调整 people -&gt; user</li>
+<li>获取创建线上活动接口变更 online.owned -&gt; online.created</li>
+<li>去除已被删除的豆瓣猜接口</li>
+</ul><p><strong>v0.0.1 [2012-09-06]</strong></p>
+
+<ul>
+<li>根据豆瓣 API v2 文档，发布第一个版本</li>
+</ul><h3>联系</h3>
 
 <ul>
 <li>使用 douban-client 过程中遇到 bug, 可以到 <a href="https://github.com/liluo/douban-client/issues">Issues</a> 反馈</li>
