@@ -20,10 +20,10 @@ class Album(DoubanApiBase):
         return self._delete('/v2/album/%s'%id)
 
     def list(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/album/people_albums/%s'%user_id, start=start, count=count)
+        return self._get('/v2/album/user_created/%s'%user_id, start=start, count=count)
 
     def liked_list(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/album/people_albums/%s/liked'%user_id, start=start, count=count)
+        return self._get('/v2/album/user_liked/%s'%user_id, start=start, count=count)
 
     def photos(self, id, start=DEFAULT_START, count=DEFAULT_COUNT, order='', sortby='time'):
         return self._get('/v2/album/%s/photos'%id, start=start, count=count, order=order, sortby=sortby)

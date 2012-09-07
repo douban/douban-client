@@ -4,7 +4,7 @@ douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包�
 
 目前已完成的接口有：
 ``` 
-* 用户 People
+* 用户 User
 * 广播 Miniblog
 * 豆邮 Doumail
 * 日记 Note
@@ -82,21 +82,21 @@ count: 20
 所有返回数据以豆瓣官方文档为准，各接口末尾处均有相应链接入口。
 
 
-__用户 People__
+__用户 User__
 ```
 # 以下 id 指用户数字 id
-当前用户 client.people.me
-指定用户 client.people.get(id) 
-搜索用户 client.people.search(q)       # q: 搜索的关键词
+当前用户 client.user.me
+指定用户 client.user.get(id) 
+搜索用户 client.user.search(q)       # q: 搜索的关键词
 
 # 此处是将广播关系接口放置到用户
-关注用户 client.people.follow(id)
-取消关注 client.people.unfollow(id)
-粉丝信息 client.people.followers(id, start, count)
-关注信息 client.people.following(id, start, count) 
-关注关系 client.people.friendships(target_id, source_id) 
-共同关注 client.people.follow_in_common(id, start,count) 
-加入黑名单 client.people.block(id)
+关注用户 client.user.follow(id)
+取消关注 client.user.unfollow(id)
+粉丝信息 client.user.followers(id, start, count)
+关注信息 client.user.following(id, start, count) 
+关注关系 client.user.friendships(target_id, source_id) 
+共同关注 client.user.follow_in_common(id, start,count) 
+加入黑名单 client.user.block(id)
 ```
 <http://developers.douban.com/wiki/?title=user_v2>
 
@@ -121,8 +121,8 @@ __广播 Miniblog__
 获取某条广播回复   client.miniblog.comment.get(comment_id)
 删除某条广播回复   client.miniblog.comment.delete(comment_id)
 
-赞某广播 client.miniblog.like(id)
-取消赞某广播 client.miniblog.unlike(id)
+赞广播 client.miniblog.like(id)
+取消赞 client.miniblog.unlike(id)
 赞某广播用户列表 client.miniblog.likers(id)
 
 转发广播 client.miniblog.reshare(id)
@@ -306,7 +306,7 @@ __线上活动 Online__
 
 获取线上活动列表 client.online.list(cate, start, end) 
 获取参加过的活动 client.online.joined(user_id, start, count)
-获取组织过的活动 client.online.owned(user_id, start, count)
+获取创建过的活动 client.online.created(user_id, start, count)
 
 ```
 <http://developers.douban.com/wiki/?title=online_v2>
@@ -362,22 +362,17 @@ __论坛 Discussion__
 <http://developers.douban.com/wiki/?title=discussion_v2>
 
 
-
-__豆瓣猜 Guess__
-```
-# 这里是把分散日记，相册，线上活动猜放到一起了
-猜你喜欢的日记      client.guess.notes(user_id)
-猜你喜欢的相册      client.guess.albums(user_id)
-猜你喜欢的线上活动  client.guess.onlines(user_id)
-```
-<http://developers.douban.com/wiki/?title=note_v2#get_rec_list>
-
-<http://developers.douban.com/wiki/?title=photo_v2#album_guesses>
-
-<http://developers.douban.com/wiki/?title=online_v2#guesslist>
-
-
 已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
+
+### Changelog
+
+__v0.0.2 [2012-09-07]__
+* 与豆瓣官网同步，调整 people -> user
+* 获取创建线上活动接口变更 online.owned -> online.created
+* 去除已被删除的豆瓣猜接口
+
+__v0.0.1 [2012-09-06]__
+* 根据豆瓣 API v2 文档，发布第一个版本
 
 ### 联系
 * 使用 douban-client 过程中遇到 bug, 可以到 [Issues](https://github.com/liluo/douban-client/issues) 反馈

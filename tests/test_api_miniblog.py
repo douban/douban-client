@@ -36,7 +36,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         self.assertTrue(all([self.user_id == r['user']['id'] for r in ret]))
 
     def test_mentions(self):
-        uid = self.client.people.me['uid']
+        uid = self.client.user.me['uid']
         ret = self.client.miniblog.mentions()
 
         self.assertTrue(isinstance(ret, list))

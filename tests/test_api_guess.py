@@ -7,29 +7,29 @@ class TestApiGuess(DoubanClientTestBase):
         super(TestApiGuess, self).setUp()
         self.user_id = '40774605'
 
-    def test_guess_notes(self):
-        ret = self.client.guess.notes(self.user_id)
+    # def test_guess_notes(self):
+    #     ret = self.client.guess.notes(self.user_id)
 
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('notes'))
-        self.assertTrue(isinstance(ret['notes'], list))
+    #     self.assertTrue(ret.has_key('start'))
+    #     self.assertTrue(ret.has_key('count'))
+    #     self.assertTrue(ret.has_key('notes'))
+    #     self.assertTrue(isinstance(ret['notes'], list))
 
-    def test_guess_albums(self):
-        ret = self.client.guess.albums(self.user_id)
+    # def test_guess_albums(self):
+    #     ret = self.client.guess.albums(self.user_id)
 
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('albums'))
-        self.assertTrue(isinstance(ret['albums'], list))
+    #     self.assertTrue(ret.has_key('start'))
+    #     self.assertTrue(ret.has_key('count'))
+    #     self.assertTrue(ret.has_key('albums'))
+    #     self.assertTrue(isinstance(ret['albums'], list))
 
-    def test_guess_onlines(self):
-        ret = self.client.guess.onlines(self.user_id)
+    # def test_guess_onlines(self):
+    #     ret = self.client.guess.onlines(self.user_id)
 
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('onlines'))
-        self.assertTrue(isinstance(ret['onlines'], list))
+    #     self.assertTrue(ret.has_key('start'))
+    #     self.assertTrue(ret.has_key('count'))
+    #     self.assertTrue(ret.has_key('onlines'))
+    #     self.assertTrue(isinstance(ret['onlines'], list))
 
 
 if __name__ == '__main__':

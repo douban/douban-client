@@ -57,11 +57,11 @@ class Online(DoubanApiBase):
         # cate: day, week, latest
         return self._get('/v2/onlines', cate=cate, start=start, count=count)
 
-    def owned(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/online/people_onlines/%s/owned'%user_id, start=start, count=count)
+    def created(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
+        return self._get('/v2/online/user_created/%s'%user_id, start=start, count=count)
 
     def joined(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/online/people_onlines/%s'%user_id, start=start, count=count)
+        return self._get('/v2/online/user_participated/%s'%user_id, start=start, count=count)
 
 
 class OnlineDiscussion(DoubanApiBase):

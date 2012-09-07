@@ -32,10 +32,10 @@ class Note(DoubanApiBase):
         return self._delete('/v2/note/%s/like'%id)
 
     def list(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/note/people_notes/%s'%user_id)
+        return self._get('/v2/note/user_created/%s'%user_id)
 
     def liked_list(self, user_id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return self._get('/v2/note/people_notes/%s/liked'%user_id)
+        return self._get('/v2/note/user_liked/%s'%user_id)
 
     def comments(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
         return Comment(self.client, self.target).list(id, start=start, count=count)

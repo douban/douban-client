@@ -17,7 +17,7 @@ class Subject(DoubanApiBase):
         return self._get('/v2/%s/%s/tags'%(self.target, id))
 
     def tagged_list(self, id):
-        return self._get('/v2/%s/people_tags/%s'%(self.target, id))
+        return self._get('/v2/%s/user_tags/%s'%(self.target, id))
 
     # def reviews(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
     #     return Review(self.client, self.target).list(id, start=start, count=count)

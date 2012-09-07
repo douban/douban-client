@@ -1,5 +1,8 @@
 *.py[co]
 
+tests/local_config.py
+douban_client/scope.py
+
 # Packages
 *.egg
 *.egg-info

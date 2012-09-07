@@ -95,8 +95,8 @@ class TestApiOnline(DoubanClientTestBase):
         self.assertTrue(self.discussion_title, ret['title'])
         self.assertTrue(self.discussion_content, ret['content'])
 
-    def test_owned_onlines(self):
-        ret = self.client.online.owned(self.user_id)
+    def test_created_onlines(self):
+        ret = self.client.online.created(self.user_id)
 
         self.assertTrue(ret.has_key('total'))
         self.assertTrue(isinstance(ret['onlines'], list))

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .people import People
+from .user import User
 from .doumail import Doumail
 from .discussion import Discussion
 from .note import Note
@@ -20,8 +20,8 @@ class DoubanApi(object):
         return '<DoubanClient API>'
 
     @property
-    def people(self):
-        return People(self.client)
+    def user(self):
+        return User(self.client)
 
     @property
     def doumail(self):
