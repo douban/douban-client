@@ -7,10 +7,10 @@ class TestApiDiscussion(DoubanClientTestBase):
     def setUp(self):
         super(TestApiDiscussion, self).setUp()
         self.user_id = '40774605'
-        self.discussion_id = '48549097'
+        self.discussion_id = '48752833'
         self.target = 'online'
         self.target_id = '10903196'
-        self.comment_id = '12908803'
+        self.comment_id = '12939812'
         
         tmp = uuid4().hex
 
