@@ -17,7 +17,8 @@ class TestApiEvent(DoubanClientTestBase):
 
         self.assertTrue(isinstance(ret, dict))
         self.assertEqual(self.event_id, ret['id'])
-        self.assertTrue(ret.has_key('location'))
+        self.assertTrue(ret.has_key('loc_id'))
+        self.assertTrue(ret.has_key('loc_name'))
 
     def test_get_event_participants(self):
         ret = self.client.event.participants(self.event_id)
@@ -66,7 +67,7 @@ class TestApiEvent(DoubanClientTestBase):
     def test_join_event(self):
         ret = self.client.event.join(self.event_id)
 
-        self.assertEqual(None, ret)
+        self.assertEqual({}, ret)
 
     def test_quit_event(self):
         ret = self.client.event.quit(self.event_id)
