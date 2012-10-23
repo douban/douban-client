@@ -1,7 +1,5 @@
 ## douban-client
 
-*警告: 由于 douban-client 依赖的 py-oauth2 与 python-oauth2(OAuth 1.0) 不兼容, 如果项目有依赖 python-oauth2 ，请暂时不要安装使用 douban-client。*
-
 douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包括了 OAuth 2.0 认证、图片上传以及接口方面的调用。
 
 目前已完成的接口有：
@@ -366,6 +364,10 @@ __论坛 Discussion__
 已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
 ### Changelog
+
+__v0.0.23 [2012-10-23]__
+* 解决 py-oauth2 与 python-oauth2 命名冲突
+* 同步更新同城活动 api
 
 __v0.0.2 [2012-09-07]__
 * 与豆瓣官网同步，调整 people -> user
