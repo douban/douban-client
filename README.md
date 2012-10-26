@@ -204,7 +204,7 @@ __图片 Photo__
 ```
 # 以下 id 指图片数字 id
 获取一张图片 client.photo.get(id)
-上传一张图片 client.photo.new(album_id, image) # image = open('/path/pic.png')
+上传一张图片 client.photo.new(album_id, image, desc) # image = open('/path/pic.png')
 更新图片描述 client.photo.update(id, desc)     # desc 为描述文字
 删除一条图片 client.photo.delete(id)
 
@@ -365,7 +365,7 @@ __论坛 Discussion__
 
 ### Changelog
 
-__v0.0.23 [2012-10-23]__
+__v0.0.3 [2012-10-23]__
 * 解决 py-oauth2 与 python-oauth2 命名冲突
 * 同步更新同城活动 api
 
