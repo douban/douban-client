@@ -30,8 +30,6 @@
         <section id="main-content">
           <h2>douban-client</h2>
 
-<p><em>警告: 由于 douban-client 依赖的 py-oauth2 与 python-oauth2(OAuth 1.0) 不兼容, 如果项目有依赖 python-oauth2 ，请暂时不要安装使用 douban-client。</em></p>
-
 <p>douban-client 是对豆瓣 API v2 接口进行了一个简单封装，主要包括了 OAuth 2.0 认证、图片上传以及接口方面的调用。</p>
 
 <p>目前已完成的接口有：</p>
@@ -231,7 +229,7 @@ count: 20
 
 <pre><code># 以下 id 指图片数字 id
 获取一张图片 client.photo.get(id)
-上传一张图片 client.photo.new(album_id, image) # image = open('/path/pic.png')
+上传一张图片 client.photo.new(album_id, image, desc) # image = open('/path/pic.png')
 更新图片描述 client.photo.update(id, desc)     # desc 为描述文字
 删除一条图片 client.photo.delete(id)
 
@@ -386,7 +384,12 @@ count: 20
 
 <h3>Changelog</h3>
 
-<p><strong>v0.0.2 [2012-09-07]</strong></p>
+<p><strong>v0.0.3 [2012-10-23]</strong></p>
+
+<ul>
+<li>解决 py-oauth2 与 python-oauth2 命名冲突</li>
+<li>同步更新同城活动 api</li>
+</ul><p><strong>v0.0.2 [2012-09-07]</strong></p>
 
 <ul>
 <li>与豆瓣官网同步，调整 people -&gt; user</li>
