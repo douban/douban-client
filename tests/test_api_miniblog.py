@@ -11,6 +11,10 @@ class TestApiMiniblog(DoubanClientTestBase):
         self.miniblog_id = '999242853'
         self.comment = uuid4().hex
         self.comment_id = '140907103'
+        self.rec_title = 'rec from douban-client'
+        self.rec_url = 'https://github.com/douban/douban-client'
+        self.rec_desc = 'Python client library for Douban APIs (OAuth 2.0) '
+        self.rec_image = 'http://img3.douban.com/view/photo/photo/public/p1850826843.jpg'
 
     def _gen_text(self):
         return 'test miniblog %s by douban-client'% uuid4().hex
@@ -120,6 +124,14 @@ class TestApiMiniblog(DoubanClientTestBase):
         ret = self.client.miniblog.comment.get(self.comment_id)
 
         self.assertEqual('456', ret['text'])
+
+    def test_miniblog_rec(self):
+        ret = self.client.miniblog.rec(title=self.rec_title, url=self.rec_url, 
+                desc=self.rec_desc, image=self.rec_image)
+
+        self.assertEqual(ret['title'], u'推荐网址')
+        self.assertEqual(len(ret['attachments']), 1)
+
 
 if __name__ == '__main__':
     main()
