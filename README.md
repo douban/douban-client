@@ -115,6 +115,8 @@ __广播 Miniblog__
 新写图片广播 client.miniblog.new(text, image=open('/path/pic.png'))
 删除一条广播 client.miniblog.delete(id)
 
+推荐网址 client.miniglog.rec(title='', url='', desc='', image='http://url.jpg')
+
 获取某广播回复列表 client.miniblog.comments(id)
 回复某条广播       client.miniblog.comment.new(id, text)
 获取某条广播回复   client.miniblog.comment.get(comment_id)

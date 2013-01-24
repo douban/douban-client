@@ -14,6 +14,9 @@ class Miniblog(DoubanApiBase):
         files = dict(image=image) if image else dict()
         return self._post('/shuo/v2/statuses/', text=text, files=files)
 
+    def rec(self, title='', url='', desc='', image=''):
+        return self._post('/shuo/v2/statuses/', rec_title=title, rec_url=url, rec_desc=desc, rec_image=image)
+
     def delete(self, id):
         return self._delete('/shuo/v2/statuses/%s'%id)
 
