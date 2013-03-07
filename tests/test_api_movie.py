@@ -10,6 +10,7 @@ class TestApiMovie(DoubanClientTestBase):
         self.movie_id = '1296357'
         self.review_id = '5565362'
         self.imdb = 'tt1345836'
+        self.celebrity_id = '1053585'
 
     def test_get_movie(self):
         ret = self.client.movie.get(self.movie_id)
