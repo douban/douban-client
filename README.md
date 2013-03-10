@@ -247,6 +247,8 @@ __电影 Movie__
 # 以下 id 指电影条目数字 id
 # q: 关键词, tag: 标签
 获取一部电影信息 client.movie.get(id)
+获取影人信息 client.movie.celebrity(celebrity_id)
+获取影人作品信息 client.movie.celebrity_works(celebrity_id)
 通过imdb获取电影 client.movie.imdb(imdb_number)
 搜索电影信息     client.movie.search(q, tag, start, count) 
 
