@@ -45,14 +45,19 @@ SCOPE = 'douban_basic_common,shuo_basic_r,shuo_basic_w'
 client = DoubanClient(API_KEY, API_SECRET, your_redirect_uri, SCOPE)
 
 # 以下方式 2 选 1:
-# 引导用户授权
+# 1. 引导用户授权
 print 'Go to the following link in your browser:' 
 print client.authorize_url
 code = raw_input('Enter the verification code:')
-client.auth_with_code(code)
+access_token = client.auth_with_code(code)
 
-# 如果有之前有 token，则可以
-client.auth_with_token(token)
+# 2. 如果有之前有 token，则可以
+access_token = client.auth_with_token(token)
+
+
+# Refresh Token(请注意：refresh_token 值仅可在引导用户授权完成后获取)
+refresh_token = access_token.client.refresh_token
+new_access_token = access_token.refresh_token(refresh_token)
 
 ```
 
