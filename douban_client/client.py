@@ -9,12 +9,12 @@ class DoubanClient(DoubanApi):
     AUTH_HOST = 'https://www.douban.com'
     TOKEN_URL = AUTH_HOST + '/service/auth2/token'
     AUTHORIZE_URL = AUTH_HOST + '/service/auth2/auth'
-    
+
 
     def __init__(self, key, secret, redirect='', scope=''):
         self.redirect_uri = redirect
         self.scope = scope
-        self.client = Client(key, secret, 
+        self.client = Client(key, secret,
                        site=self.API_HOST, authorize_url=self.AUTHORIZE_URL, token_url=self.TOKEN_URL)
 
     def __repr__(self):
@@ -31,5 +31,9 @@ class DoubanClient(DoubanApi):
         self.client = AccessToken(self.client, token)
 
     def auth_with_password(self, username, password, **opt):
-        self.client = self.client.password.get_token(username=username, 
+        self.client = self.client.password.get_token(username=username,
                            password=password, redirect_uri=self.redirect_uri, **opt)
+
+    def refresh_token(self, refresh_token):
+        access_token = AccessToken(self.client, token='', refresh_token=refresh_token)
+        self.client = access_token.refresh()
