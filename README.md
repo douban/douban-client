@@ -374,6 +374,9 @@ __论坛 Discussion__
 
 ### Changelog
 
+__v0.0.4 [2013-04-07]__
+* 增加 refresh token 方法
+
 __v0.0.3 [2012-10-23]__
 * 解决 py-oauth2 与 python-oauth2 命名冲突
 * 同步更新同城活动 api
