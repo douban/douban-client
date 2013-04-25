@@ -4,12 +4,12 @@ from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
 
 class Review(DoubanApiBase):
 
-    def __init__(self, client, target):
-        self.client = client
+    def __init__(self, access_token, target):
+        self.access_token = access_token
         self.target = target
 
     # def get(self, id):
-    #     return self._get('/v2/%s/review/%s'%(self.cate, id)) 
+    #     return self._get('/v2/%s/review/%s'%(self.cate, id))
 
     # def list(self, target_id, start=DEFAULT_START, count=DEFAULT_COUNT):
     #     return self._get('/v2/%s/%s/reviews'%(self.target, target_id), start=start, count=count)

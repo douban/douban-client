@@ -49,15 +49,17 @@ client = DoubanClient(API_KEY, API_SECRET, your_redirect_uri, SCOPE)
 print 'Go to the following link in your browser:' 
 print client.authorize_url
 code = raw_input('Enter the verification code:')
-access_token = client.auth_with_code(code)
+client.auth_with_code(code)
 
 # 2. 如果有之前有 token，则可以
-access_token = client.auth_with_token(token)
+client.auth_with_token(token)
 
+# Token Code
+token_code = client.token_code
 
 # Refresh Token(请注意：refresh_token 值仅可在引导用户授权完成后获取)
-refresh_token = access_token.client.refresh_token
-new_access_token = access_token.refresh_token(refresh_token)
+refresh_token_code = client.refresh_token_code
+client.refresh_token(refresh_token_code) # refresh token
 
 ```
 

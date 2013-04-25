@@ -6,7 +6,7 @@ class TestApiUser(DoubanClientTestBase):
 
     def setUp(self):
         super(TestApiUser, self).setUp()
-        self.user_id = '40774605'
+        self.user_id = '70920446'
 
     def test_get_user(self):
         ret = self.client.user.get('liluoliluo')
@@ -26,7 +26,7 @@ class TestApiUser(DoubanClientTestBase):
 
     def test_follow(self):
         ret = self.client.user.follow(self.user_id)
-        
+
         self.assertTrue(ret['following'])
 
     def test_unfollow(self):
@@ -68,7 +68,6 @@ class TestApiUser(DoubanClientTestBase):
 
     # def test_following_followers_of(self):
     #     ret = self.client.user.following_followers_of('51789002')
-    #     print ret
 
 
     # def test_suggestions(self):
@@ -76,7 +75,7 @@ class TestApiUser(DoubanClientTestBase):
 
     #     self.assertTrue(isinstance(ret, list))
     #     self.assertTrue(all([r.has_key('uid') for r in ret]))
-        
+
 
 
 if __name__ == '__main__':

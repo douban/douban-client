@@ -10,15 +10,15 @@ class Online(DoubanApiBase):
     def get(self, id):
         return self._get('/v2/online/%s'%id)
 
-    def new(self, title, desc, begin_time, end_time, 
+    def new(self, title, desc, begin_time, end_time,
             related_url='', cascade_invite='false', tags=''):
-        return self._post('/v2/onlines', 
+        return self._post('/v2/onlines',
                 title=title, desc=desc, begin_time=begin_time, end_time=end_time,
                 related_url=related_url, cascade_invite=cascade_invite, tags=tags)
 
     def update(self, id, title, desc, begin_time, end_time,
             related_url='', cascade_invite='false', tags=''):
-        return self._put('/v2/online/%s'%id, 
+        return self._put('/v2/online/%s'%id,
                 title=title, desc=desc, begin_time=begin_time, end_time=end_time,
                 related_url=related_url, cascade_invite=cascade_invite, tags=tags)
 
@@ -51,7 +51,7 @@ class Online(DoubanApiBase):
 
     @property
     def discussion(self):
-        return OnlineDiscussion(self.client)
+        return OnlineDiscussion(self.access_token)
 
     def list(self, cate='day', start=DEFAULT_START, count=DEFAULT_COUNT):
         # cate: day, week, latest
