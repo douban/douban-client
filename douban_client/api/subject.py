@@ -20,8 +20,8 @@ class Subject(DoubanApiBase):
         return self._get('/v2/%s/user_tags/%s'%(self.target, id))
 
     # def reviews(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-    #     return Review(self.client, self.target).list(id, start=start, count=count)
+    #     return Review(self.access_token, self.target).list(id, start=start, count=count)
 
     @property
     def review(self):
-        return Review(self.client, self.target)
+        return Review(self.access_token, self.target)

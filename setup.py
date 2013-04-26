@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'douban-client',
-    version = '0.0.4',
+    version = '0.0.5',
     keywords = ('Douban', 'OAuth2', 'Douban API'),
     description = 'Python client library for Douban APIs (OAuth 2.0)',
     long_description = 'See http://liluo.github.com/douban-client',

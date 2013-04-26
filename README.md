@@ -49,15 +49,18 @@ client = DoubanClient(API_KEY, API_SECRET, your_redirect_uri, SCOPE)
 print 'Go to the following link in your browser:' 
 print client.authorize_url
 code = raw_input('Enter the verification code:')
-access_token = client.auth_with_code(code)
+client.auth_with_code(code)
 
 # 2. 如果有之前有 token，则可以
-access_token = client.auth_with_token(token)
+client.auth_with_token(token)
 
+# Token Code
+token_code = client.token_code
 
-# Refresh Token(请注意：refresh_token 值仅可在引导用户授权完成后获取)
-refresh_token = access_token.client.refresh_token
-new_access_token = access_token.refresh_token(refresh_token)
+# Refresh Token
+# 请注意：`refresh_token_code` 值仅可在授权完成时获取(即在 `auth_with_code`, `auth_with_password` 之后)
+refresh_token_code = client.refresh_token_code
+client.refresh_token(refresh_token_code) # refresh token
 
 ```
 
@@ -373,6 +376,10 @@ __论坛 Discussion__
 已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
 ### Changelog
+__v0.0.5 [2013-04-26]__
+* 修复文档中关于授权部分的错误
+* 修复 `refresh_token` 错误
+* DoubanClient 实例对象增加 `token_code`, `refresh_token_code` 属性
 
 __v0.0.4 [2013-04-07]__
 * 增加 refresh token 方法

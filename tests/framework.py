@@ -9,7 +9,7 @@ sys.path.insert(0, ROOT_DIR)
 
 from unittest import main, TestCase
 from douban_client import DoubanClient
-from douban_client.api.error import DoubanError
+from douban_client.api.error import DoubanAPIError
 
 try:
     from local_config import KEY, SECRET, CALLBACK, SCOPE, TOKEN
@@ -29,14 +29,15 @@ def get_client():
     token = TOKEN
 
     if token:
-        client.auth_with_token(token) 
+        client.auth_with_token(token)
     else:
-        print 'Go to the following link in your browser:' 
+        print 'Go to the following link in your browser:'
         print client.authorize_url
 
         code = raw_input('Enter the verification code and hit ENTER when you\'re done:')
         client.auth_with_code(code)
-        print client.client.token
+        print 'token code:', client.token_code
+        print 'refresh token code:', client.refresh_token_code
     return client
 
 client = get_client()

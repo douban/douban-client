@@ -4,8 +4,8 @@ from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
 
 class Comment(DoubanApiBase):
 
-    def __init__(self, client, target):
-        self.client = client
+    def __init__(self, access_token, target):
+        self.access_token = access_token
         self.target = target
 
     def __repr__(self):

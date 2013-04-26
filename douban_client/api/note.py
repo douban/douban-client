@@ -11,15 +11,15 @@ class Note(DoubanApiBase):
         return '<DoubanAPI Note>'
 
     def new(self, title, content, privacy='public', can_reply='true'):
-        return self._post('/v2/notes', 
+        return self._post('/v2/notes',
                 title=title, content=content, privacy=privacy, can_reply=can_reply)
-    
-    
+
+
     def get(self, id, format='text'):
         return self._get('/v2/note/%s'%id, format=format)
-    
+
     def update(self, id, title, content, privacy='public', can_reply='true'):
-        return self._put('/v2/note/%s'%id, 
+        return self._put('/v2/note/%s'%id,
                 title=title, content=content, privacy=privacy, can_reply=can_reply)
 
     def delete(self, id):
@@ -38,8 +38,8 @@ class Note(DoubanApiBase):
         return self._get('/v2/note/user_liked/%s'%user_id, start=start, count=count)
 
     def comments(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return Comment(self.client, self.target).list(id, start=start, count=count)
+        return Comment(self.access_token, self.target).list(id, start=start, count=count)
 
     @property
     def comment(self):
-        return Comment(self.client, self.target)
+        return Comment(self.access_token, self.target)

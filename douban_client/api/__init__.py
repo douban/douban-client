@@ -21,52 +21,52 @@ class DoubanApi(object):
 
     @property
     def user(self):
-        return User(self.client)
+        return User(self.access_token)
 
     @property
     def doumail(self):
-        return Doumail(self.client)
+        return Doumail(self.access_token)
 
     @property
     def discussion(self):
-        return Discussion(self.client)
+        return Discussion(self.access_token)
 
     @property
     def note(self):
-        return Note(self.client)
+        return Note(self.access_token)
 
     @property
     def album(self):
-        return Album(self.client)
+        return Album(self.access_token)
 
     @property
     def photo(self):
-        return Photo(self.client)
+        return Photo(self.access_token)
 
     @property
     def online(self):
-        return Online(self.client)
+        return Online(self.access_token)
 
     @property
     def event(self):
-        return Event(self.client)
+        return Event(self.access_token)
 
     @property
     def guess(self):
-        return Guess(self.client)
+        return Guess(self.access_token)
 
     @property
     def miniblog(self):
-        return Miniblog(self.client)
+        return Miniblog(self.access_token)
 
     @property
     def book(self):
-        return Book(self.client)
+        return Book(self.access_token)
 
     @property
     def movie(self):
-        return Movie(self.client)
+        return Movie(self.access_token)
 
     @property
     def music(self):
-        return Music(self.client)
+        return Music(self.access_token)

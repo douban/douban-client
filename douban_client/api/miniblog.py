@@ -52,11 +52,11 @@ class Miniblog(DoubanApiBase):
 
     @property
     def comment(self):
-        return MiniblogComment(self.client)
+        return MiniblogComment(self.access_token)
 
 
 class MiniblogComment(DoubanApiBase):
-    
+
     def new(self, miniblog_id, text):
         return self._post('/shuo/v2/statuses/%s/comments'%miniblog_id, text=text)
 

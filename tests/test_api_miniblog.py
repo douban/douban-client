@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from uuid import uuid4
-from framework import DoubanClientTestBase, DoubanError, main
+from framework import DoubanClientTestBase, DoubanAPIError, main
 
 class TestApiMiniblog(DoubanClientTestBase):
 
@@ -35,7 +35,7 @@ class TestApiMiniblog(DoubanClientTestBase):
 
     def test_user_timeline(self):
         ret = self.client.miniblog.user_timeline(self.user_id)
-        
+
         self.assertTrue(isinstance(ret, list))
         self.assertTrue(all([self.user_id == r['user']['id'] for r in ret]))
 
@@ -50,7 +50,7 @@ class TestApiMiniblog(DoubanClientTestBase):
 
     def test_new_miniblog(self):
         ret = self._new_miniblog()
-        
+
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(ret.has_key('id'))
 
@@ -67,7 +67,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         self.client.miniblog.delete(mid)
         func = self.client.miniblog.get
 
-        self.assertRaises(DoubanError, func, mid)
+        self.assertRaises(DoubanAPIError, func, mid)
 
     def test_like_unlike_likers_miniblog(self):
         mb = self._new_miniblog()
@@ -89,7 +89,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         self.client.miniblog.reshare(mid)
         ret = self.client.miniblog.get(mid)
         reshared_count = ret['reshared_count']
-   
+
         self.assertTrue(reshared_count > 0)
 
         # unreshare
@@ -112,7 +112,7 @@ class TestApiMiniblog(DoubanClientTestBase):
     def test_new_delete_miniblog_comment(self):
         # new
         ret = self.client.miniblog.comment.new(self.miniblog_id, self.comment)
-    
+
         self.assertEqual(self.comment, ret['text'])
 
         # delete
@@ -126,7 +126,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         self.assertEqual('456', ret['text'])
 
     def test_miniblog_rec(self):
-        ret = self.client.miniblog.rec(title=self.rec_title, url=self.rec_url, 
+        ret = self.client.miniblog.rec(title=self.rec_title, url=self.rec_url,
                 desc=self.rec_desc, image=self.rec_image)
 
         self.assertEqual(ret['title'], u'推荐网址')

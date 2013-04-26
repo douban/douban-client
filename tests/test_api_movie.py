@@ -49,7 +49,7 @@ class TestApiMovie(DoubanClientTestBase):
         ret = self.client.movie.search('蝙蝠侠')
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(isinstance(ret['movies'], list))
+        self.assertTrue(isinstance(ret['subjects'], list))
         self.assertTrue(ret.has_key('start'))
         self.assertTrue(ret.has_key('count'))
         self.assertTrue(ret.has_key('total'))

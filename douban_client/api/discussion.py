@@ -26,8 +26,8 @@ class Discussion(DoubanApiBase):
         return self._delete('/v2/discussion/%s'%id)
 
     def comments(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        return Comment(self.client, self.target).list(id, start=start, count=count)
+        return Comment(self.access_token, self.target).list(id, start=start, count=count)
 
     @property
     def comment(self):
-        return Comment(self.client, self.target)
+        return Comment(self.access_token, self.target)

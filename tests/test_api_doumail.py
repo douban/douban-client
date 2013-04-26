@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from uuid import uuid4
-from framework import DoubanClientTestBase, DoubanError, main
+from framework import DoubanClientTestBase, DoubanAPIError, main
 
 class TestApiDoumail(DoubanClientTestBase):
     def setUp(self):
@@ -14,7 +14,7 @@ class TestApiDoumail(DoubanClientTestBase):
         title = content = uuid4().hex
         try:
             ret = self.client.doumail.new(title, content, self.user_id)
-        except DoubanError, e:
+        except DoubanAPIError, e:
             ret = None
         return ret
 
@@ -45,13 +45,13 @@ class TestApiDoumail(DoubanClientTestBase):
     def test_new_doumail(self):
         ret = self._new_doumail()
 
-        self.assertEqual(None, ret)
-    
+        self.assertEqual({}, ret)
+
     def test_read_doumail(self):
         ret = self.client.doumail.read(self.doumail_id)
-        
+
         self.assertEqual('R', ret['status'])
-    
+
     def test_reads_doumail(self):
         ret = self.client.doumail.reads(self.doumail_ids)
 
@@ -62,16 +62,16 @@ class TestApiDoumail(DoubanClientTestBase):
         doumail = self.client.doumail.inbox()
         doumail_id = doumail['mails'][0]['id']
         ret = self.client.doumail.delete(doumail_id)
-        
+
         self.assertEqual({}, ret)
 
     def test_deletes_doumail(self):
         doumail = self.client.doumail.inbox()
         doumail_ids = [m['id'] for m in doumail['mails']][:2]
         ret = self.client.doumail.deletes(ids=doumail_ids)
-   
+
         self.assertEqual({}, ret)
-        
+
 
 if __name__ == '__main__':
     main()
