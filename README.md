@@ -57,7 +57,8 @@ client.auth_with_token(token)
 # Token Code
 token_code = client.token_code
 
-# Refresh Token(请注意：refresh_token 值仅可在引导用户授权完成后获取)
+# Refresh Token
+# 请注意：`refresh_token_code` 值仅可在授权完成时获取(即在 `auth_with_code`, `auth_with_password` 之后)
 refresh_token_code = client.refresh_token_code
 client.refresh_token(refresh_token_code) # refresh token
 
