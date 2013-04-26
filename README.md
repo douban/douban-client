@@ -375,6 +375,10 @@ __论坛 Discussion__
 已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
 ### Changelog
+__v0.0.5 [2013-04-26]__
+* 修复文档中关于授权部分的错误
+* 修复 `refresh_token` 错误
+* DoubanClient 实例对象增加 `token_code`, `refresh_token_code` 属性
 
 __v0.0.4 [2013-04-07]__
 * 增加 refresh token 方法
