@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 from .comment import Comment
 
-class Note(DoubanApiBase):
+class Note(DoubanAPIBase):
 
     target = 'note'
 
@@ -21,6 +21,18 @@ class Note(DoubanApiBase):
     def update(self, id, title, content, privacy='public', can_reply='true'):
         return self._put('/v2/note/%s'%id,
                 title=title, content=content, privacy=privacy, can_reply=can_reply)
+
+    def upload_photo(self, id, pid, image, content, layout=None, desc=None):
+        kwargs = {
+            'pids': 'p_%s' % pid,
+            'content': content,
+            'layout_%s' % pid: layout,
+            'desc_%s' % pid: desc
+        }
+        files = {
+            'image_%s' % pid: image
+        }
+        return self._post('/v2/note/%s' % id, files=files, **kwargs)
 
     def delete(self, id):
         return self._delete('/v2/note/%s'%id)

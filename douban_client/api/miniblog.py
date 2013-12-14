@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
-class Miniblog(DoubanApiBase):
+class Miniblog(DoubanAPIBase):
 
     def __repr__(self):
         return '<DoubanAPI Miniblog>'
@@ -55,7 +55,7 @@ class Miniblog(DoubanApiBase):
         return MiniblogComment(self.access_token)
 
 
-class MiniblogComment(DoubanApiBase):
+class MiniblogComment(DoubanAPIBase):
 
     def new(self, miniblog_id, text):
         return self._post('/shuo/v2/statuses/%s/comments'%miniblog_id, text=text)

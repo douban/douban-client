@@ -17,7 +17,7 @@ def check_execption(func):
     return _check
 
 
-class DoubanApiBase(object):
+class DoubanAPIBase(object):
 
     def __init__(self, access_token):
         self.access_token = access_token
