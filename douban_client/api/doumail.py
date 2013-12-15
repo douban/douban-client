@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
-class Doumail(DoubanApiBase):
+class Doumail(DoubanAPIBase):
 
     def __repr__(self):
         return '<DoubanAPI Doumail>'
@@ -15,7 +15,7 @@ class Doumail(DoubanApiBase):
 
     def outbox(self, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/doumail/outbox', start=start, count=count)
-   
+
     def unread(self, start=DEFAULT_START, count=DEFAULT_COUNT):
         return self._get('/v2/doumail/inbox/unread', start=start, count=count)
 

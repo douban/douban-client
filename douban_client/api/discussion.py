@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 from .comment import Comment
 
-class Discussion(DoubanApiBase):
+class Discussion(DoubanAPIBase):
 
     target = 'discussion'
 

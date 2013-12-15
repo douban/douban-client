@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 from .review import Review
 
-class Subject(DoubanApiBase):
+class Subject(DoubanAPIBase):
 
     target = None
 

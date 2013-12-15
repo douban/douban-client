@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
-class Guess(DoubanApiBase):
+class Guess(DoubanAPIBase):
 
     def __repr__(self):
         return '<DoubanAPI Guess>'
