@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
-class Online(DoubanApiBase):
+class Online(DoubanAPIBase):
 
     def __repr__(self):
         return '<DoubanAPI Online>'
@@ -64,7 +64,7 @@ class Online(DoubanApiBase):
         return self._get('/v2/online/user_participated/%s'%user_id, start=start, count=count)
 
 
-class OnlineDiscussion(DoubanApiBase):
+class OnlineDiscussion(DoubanAPIBase):
 
     def new(self, target_id, title, content):
         return self._post('/v2/online/%s/discussions'%target_id, title=title, content=content)

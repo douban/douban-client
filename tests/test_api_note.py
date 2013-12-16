@@ -3,12 +3,13 @@
 from uuid import uuid4
 from framework import DoubanClientTestBase, main
 
+
 class TestApiNote(DoubanClientTestBase):
     def setUp(self):
         super(TestApiNote, self).setUp()
-        self.user_id = '40774605'
-        self.note_id = '234002802'
-        self.comment_id = '30034427'
+        self.user_id = '64129916'
+        self.note_id = '321263424'
+        self.comment_id = '36366425'
         self.comment_content = uuid4().hex
         self.title = 'test note title'
         self.content = 'test note content'
@@ -38,10 +39,13 @@ class TestApiNote(DoubanClientTestBase):
 
         self.assertEqual(ret['title'], self.title)
         self.assertTrue('content' in ret)
-        
 
     def test_update_note(self):
-        ret = self.client.note.update(self.note_id, self.title, self.update_content)
+        ret = self._new_note()
+        self.assertTrue(ret.has_key('id'))
+        note_id = ret.get('id')
+        self.assertTrue(note_id)
+        ret = self.client.note.update(note_id, self.title, self.update_content)
 
         # TODO
         # 这个地方很奇怪，更新成功，但是应该返回结果类型是 unicode，说好的 JSON 呢
@@ -49,6 +53,20 @@ class TestApiNote(DoubanClientTestBase):
         # self.assertEqual(ret['content'], self.update_content)
 
         self.assertTrue(self.update_content in ret)
+
+    def test_upload_note_photo(self):
+        note = self._new_note()
+        self.assertTrue(note.has_key('id'))
+        note_id = note.get('id')
+        self.assertTrue(note_id)
+
+        pid = 1
+        image = open('douban.png')
+        content = self.update_content
+        layout = 'L'
+        desc = 'desc for image%s' % pid
+        ret = self.client.note.upload_photo(note_id, pid, image, content, layout, desc)
+        self.assertTrue(ret.has_key('content'))
 
     def test_delete_note(self):
         note = self._new_note()
@@ -87,7 +105,6 @@ class TestApiNote(DoubanClientTestBase):
     def test_new_delete_note_comment(self):
         # new
         ret = self.client.note.comment.new(self.note_id, self.comment_content)
-        
         self.assertTrue('id' in ret)
         self.assertTrue('content' in ret)
 

@@ -1,8 +1,8 @@
-# -*- coding: utf-8
+# -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
-class Album(DoubanApiBase):
+class Album(DoubanAPIBase):
 
     def __repr__(self):
         return '<DoubanAPI Album>'
@@ -15,7 +15,7 @@ class Album(DoubanApiBase):
 
     def update(self, id, title='', desc='', order='desc', privacy='public'):
         return self._put('/v2/album/%s'%id, title=title, desc=desc, order=order, privacy=privacy)
-    
+
     def delete(self, id):
         return self._delete('/v2/album/%s'%id)
 

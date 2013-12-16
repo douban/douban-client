@@ -3,7 +3,8 @@
 from pyoauth2 import Client, AccessToken
 from .api import DoubanApi
 
-class DoubanClient(DoubanApi):
+
+class DoubanClient(DoubanAPI):
 
     API_HOST = 'https://api.douban.com'
     AUTH_HOST = 'https://www.douban.com'
