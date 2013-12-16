@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 import os
 import sys
-
-from __future__ import print_function
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 ROOT_DIR = os.path.dirname(TEST_DIR)
