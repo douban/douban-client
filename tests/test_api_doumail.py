@@ -27,19 +27,19 @@ class TestApiDoumail(DoubanClientTestBase):
     def test_doumail_inbox(self):
         ret = self.client.doumail.inbox()
 
-        self.assertTrue(ret.has_key('start'))
+        self.assertTrue('start' in ret)
         self.assertTrue(isinstance(ret['mails'], list))
 
     def test_doumail_outbox(self):
         ret = self.client.doumail.outbox()
 
-        self.assertTrue(ret.has_key('start'))
+        self.assertTrue('start' in ret)
         self.assertTrue(isinstance(ret['mails'], list))
 
     def test_doumail_unread(self):
         ret = self.client.doumail.unread()
 
-        self.assertTrue(ret.has_key('start'))
+        self.assertTrue('start' in ret)
         self.assertTrue(isinstance(ret['mails'], list))
 
     def test_new_doumail(self):

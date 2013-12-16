@@ -14,45 +14,45 @@ class TestApiMusic(DoubanClientTestBase):
         ret = self.client.music.get(self.music_id)
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('author'))
-        self.assertTrue(ret.has_key('title'))
-        self.assertTrue(ret.has_key('summary'))
+        self.assertTrue('author' in ret)
+        self.assertTrue('title' in ret)
+        self.assertTrue('summary' in ret)
 
     def test_search_music(self):
         ret = self.client.music.search('坦白')
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['musics'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     # def test_music_reviews(self):
     #     ret = self.client.music.reviews(self.music_id)
 
     #     self.assertTrue(isinstance(ret, dict))
     #     self.assertTrue(isinstance(ret['reviews'], list))
-    #     self.assertTrue(ret.has_key('start'))
-    #     self.assertTrue(ret.has_key('count'))
-    #     self.assertTrue(ret.has_key('total'))
+    #     self.assertTrue('start' in ret)
+    #     self.assertTrue('count' in ret)
+    #     self.assertTrue('total' in ret)
 
     def test_music_tags(self):
         ret = self.client.music.tags(self.music_id)
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['tags'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     def test_get_music_tagged_list(self):
         ret = self.client.music.tagged_list('40774605')
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['tags'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     def test_new_update_delete_review(self):
 
@@ -63,7 +63,7 @@ class TestApiMusic(DoubanClientTestBase):
 
         self.assertTrue(isinstance(ret, dict))
         self.assertEqual(content, ret['content'])
-        self.assertTrue(ret.has_key('author'))
+        self.assertTrue('author' in ret)
 
         review_id = ret['id']
 
@@ -82,8 +82,8 @@ class TestApiMusic(DoubanClientTestBase):
 
     #     self.assertTrue(isinstance(ret, dict))
     #     self.assertEqual(ret['id'], self.review_id)
-    #     self.assertTrue(ret.has_key('rating'))
-    #     self.assertTrue(ret.has_key('author'))
+    #     self.assertTrue('rating' in ret)
+    #     self.assertTrue('author' in ret)
 
 
 if __name__ == '__main__':

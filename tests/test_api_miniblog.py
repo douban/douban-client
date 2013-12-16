@@ -45,19 +45,19 @@ class TestApiMiniblog(DoubanClientTestBase):
 
         self.assertTrue(isinstance(ret, list))
         self.assertTrue(all([isinstance(r, dict) for r in ret]))
-        self.assertTrue(all([r.has_key('id') for r in ret]))
-        self.assertTrue(all([r.has_key('unread') for r in ret]))
+        self.assertTrue(all(['id' in r for r in ret]))
+        self.assertTrue(all(['unread' in r for r in ret]))
 
     def test_new_miniblog(self):
         ret = self._new_miniblog()
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
 
     def test_new_miniblog_with_image(self):
         ret = self._new_miniblog(upload=True)
 
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
         self.assertEqual('upload', ret['type'])
 
 
@@ -107,7 +107,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         ret = self.client.miniblog.comments(self.miniblog_id)
 
         self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all([r.has_key('user') for r in ret]))
+        self.assertTrue(all(['user' in r for r in ret]))
 
     def test_new_delete_miniblog_comment(self):
         # new
