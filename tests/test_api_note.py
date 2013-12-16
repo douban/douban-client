@@ -42,7 +42,7 @@ class TestApiNote(DoubanClientTestBase):
 
     def test_update_note(self):
         ret = self._new_note()
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
         note_id = ret.get('id')
         self.assertTrue(note_id)
         ret = self.client.note.update(note_id, self.title, self.update_content)
@@ -56,7 +56,7 @@ class TestApiNote(DoubanClientTestBase):
 
     def test_upload_note_photo(self):
         note = self._new_note()
-        self.assertTrue(note.has_key('id'))
+        self.assertTrue('id' in note)
         note_id = note.get('id')
         self.assertTrue(note_id)
 
@@ -66,7 +66,7 @@ class TestApiNote(DoubanClientTestBase):
         layout = 'L'
         desc = 'desc for image%s' % pid
         ret = self.client.note.upload_photo(note_id, pid, image, content, layout, desc)
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('content' in ret)
 
     def test_delete_note(self):
         note = self._new_note()
@@ -89,7 +89,6 @@ class TestApiNote(DoubanClientTestBase):
     def test_unlike(self):
         ret = self.client.note.unlike(self.note_id)
         self.assertEqual(ret, {})
-
 
     def test_note_comments(self):
         ret = self.client.note.comments(self.note_id)

@@ -39,7 +39,7 @@ class TestApiAlbum(DoubanClientTestBase):
         ret = self.client.album.list(self.user_id)
         
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue('albums' in key)
+        self.assertTrue('albums' in ret)
         self.assertTrue(isinstance(ret['albums'], list))
 
     def test_liked_album(self):
