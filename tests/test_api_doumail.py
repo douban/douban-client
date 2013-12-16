@@ -14,7 +14,7 @@ class TestApiDoumail(DoubanClientTestBase):
         title = content = uuid4().hex
         try:
             ret = self.client.doumail.new(title, content, self.user_id)
-        except DoubanAPIError, e:
+        except DoubanAPIError as e:
             ret = None
         return ret
 
