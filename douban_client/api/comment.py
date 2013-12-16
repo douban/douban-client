@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .base import DoubanApiBase, DEFAULT_START, DEFAULT_COUNT
+from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
-class Comment(DoubanApiBase):
+class Comment(DoubanAPIBase):
 
     def __init__(self, access_token, target):
         self.access_token = access_token
