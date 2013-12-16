@@ -3,6 +3,9 @@
 from uuid import uuid4
 from framework import DoubanClientTestBase, DoubanAPIError, main
 
+from six import text_type
+
+
 class TestApiMiniblog(DoubanClientTestBase):
 
     def setUp(self):
@@ -129,7 +132,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         ret = self.client.miniblog.rec(title=self.rec_title, url=self.rec_url,
                 desc=self.rec_desc, image=self.rec_image)
 
-        self.assertEqual(ret['title'], u'推荐网址')
+        self.assertEqual(ret['title'], text_type(u'推荐网址'))
         self.assertEqual(len(ret['attachments']), 1)
 
 
