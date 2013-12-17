@@ -35,18 +35,6 @@ class TestApiUser(DoubanClientTestBase):
 
         self.assertFalse(ret['following'])
 
-    def test_block(self):
-        ret = self.client.user.block(self.user_id)
-
-        self.assertTrue(ret)
-
-    def test_friendships(self):
-        ret = self.client.user.friendships(target_id='51789002')
-
-        self.assertEqual(set(['source', 'target']), set(ret.keys()))
-        self.assertTrue(ret['source'].has_key('following'))
-        self.assertTrue(ret['target'].has_key('following'))
-
     def test_following(self):
         ret = self.client.user.following(self.user_id)
 
@@ -58,13 +46,6 @@ class TestApiUser(DoubanClientTestBase):
 
         self.assertTrue(isinstance(ret, list))
         self.assertTrue(all([r.has_key('uid') for r in ret]))
-
-    def test_follow_in_common(self):
-        ret = self.client.user.follow_in_common(self.user_id)
-
-        self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all([r.has_key('uid') for r in ret]))
-
 
     # def test_following_followers_of(self):
     #     ret = self.client.user.following_followers_of('51789002')

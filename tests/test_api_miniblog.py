@@ -39,15 +39,6 @@ class TestApiMiniblog(DoubanClientTestBase):
         self.assertTrue(isinstance(ret, list))
         self.assertTrue(all([self.user_id == r['user']['id'] for r in ret]))
 
-    def test_mentions(self):
-        uid = self.client.user.me['uid']
-        ret = self.client.miniblog.mentions()
-
-        self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all([isinstance(r, dict) for r in ret]))
-        self.assertTrue(all([r.has_key('id') for r in ret]))
-        self.assertTrue(all([r.has_key('unread') for r in ret]))
-
     def test_new_miniblog(self):
         ret = self._new_miniblog()
 
