@@ -65,7 +65,7 @@ class TestApiNote(DoubanClientTestBase):
         desc = 'desc for image%s' % pid
         with open('douban.png', 'rb') as image:
             ret = self.client.note.upload_photo(note_id, pid, image, content, layout, desc)
-            self.assertTrue(ret.has_key('content'))
+            self.assertTrue('content' in ret)
 
     def test_delete_note(self):
         note = self._new_note()
