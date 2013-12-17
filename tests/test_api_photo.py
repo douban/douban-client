@@ -13,8 +13,8 @@ class TestApiPhoto(DoubanClientTestBase):
         self.comment_content = uuid4().hex
 
     def _add_photo(self):
-        image = open('douban.png', 'rb')
-        return self.client.photo.new(self.album_id, image)
+        with open('douban.png', 'rb') as image:
+            return self.client.photo.new(self.album_id, image)
 
     def test_get_photo(self):
         ret = self.client.photo.get(self.photo_id)
