@@ -17,22 +17,22 @@ class TestApiEvent(DoubanClientTestBase):
 
         self.assertTrue(isinstance(ret, dict))
         self.assertEqual(self.event_id, ret['id'])
-        self.assertTrue(ret.has_key('loc_id'))
-        self.assertTrue(ret.has_key('loc_name'))
+        self.assertTrue('loc_id' in ret)
+        self.assertTrue('loc_name' in ret)
 
     def test_get_event_participants(self):
         ret = self.client.event.participants(self.event_id)
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['users'], list))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
 
     def test_get_event_wishers(self):
         ret = self.client.event.wishers(self.event_id)
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['users'], list))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
 
     def test_get_user_owned_events(self):
         ret = self.client.event.owned(self.user_id)

@@ -16,70 +16,70 @@ class TestApiMovie(DoubanClientTestBase):
         ret = self.client.movie.get(self.movie_id)
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('author'))
-        self.assertTrue(ret.has_key('title'))
-        self.assertTrue(ret.has_key('summary'))
+        self.assertTrue('author' in ret)
+        self.assertTrue('title' in ret)
+        self.assertTrue('summary' in ret)
 
     def test_get_celebrity(self):
         ret = self.client.movie.celebrity(self.celebrity_id)
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('name'))
-        self.assertTrue(ret.has_key('avatars'))
-        self.assertTrue(ret.has_key('works'))
+        self.assertTrue('name' in ret)
+        self.assertTrue('avatars' in ret)
+        self.assertTrue('works'in ret)
 
     def test_get_celebrity_works(self):
         ret = self.client.movie.celebrity_works(self.celebrity_id)
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['works'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     def test_get_movie_by_imdb(self):
         ret= self.client.movie.imdb(self.imdb)
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('author'))
-        self.assertTrue(ret.has_key('title'))
-        self.assertTrue(ret.has_key('summary'))
+        self.assertTrue('author' in ret)
+        self.assertTrue('title' in ret)
+        self.assertTrue('summary' in ret)
 
     def test_search_movie(self):
         ret = self.client.movie.search('蝙蝠侠')
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['subjects'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     # def test_movie_reviews(self):
     #     ret = self.client.movie.reviews(self.movie_id)
 
     #     self.assertTrue(isinstance(ret, dict))
     #     self.assertTrue(isinstance(ret['reviews'], list))
-    #     self.assertTrue(ret.has_key('start'))
-    #     self.assertTrue(ret.has_key('count'))
-    #     self.assertTrue(ret.has_key('total'))
+    #     self.assertTrue('start' in ret)
+    #     self.assertTrue('count' in ret)
+    #     self.assertTrue('total' in ret)
 
     def test_movie_tags(self):
         ret = self.client.movie.tags(self.movie_id)
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['tags'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     def test_get_movie_tagged_list(self):
         ret = self.client.movie.tagged_list('40774605')
 
         self.assertTrue(isinstance(ret, dict))
         self.assertTrue(isinstance(ret['tags'], list))
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('total' in ret)
 
     def test_new_update_delete_review(self):
 
@@ -90,7 +90,7 @@ class TestApiMovie(DoubanClientTestBase):
 
         self.assertTrue(isinstance(ret, dict))
         self.assertEqual(content, ret['content'])
-        self.assertTrue(ret.has_key('author'))
+        self.assertTrue('author' in ret)
 
         review_id = ret['id']
 
@@ -109,8 +109,8 @@ class TestApiMovie(DoubanClientTestBase):
 
     #     self.assertTrue(isinstance(ret, dict))
     #     self.assertEqual(ret['id'], self.review_id)
-    #     self.assertTrue(ret.has_key('rating'))
-    #     self.assertTrue(ret.has_key('author'))
+    #     self.assertTrue('rating' in ret)
+    #     self.assertTrue('author' in ret)
 
 
 if __name__ == '__main__':

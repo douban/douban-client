@@ -41,11 +41,11 @@ class TestApiMiniblog(DoubanClientTestBase):
     def test_new_miniblog(self):
         ret = self._new_miniblog()
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
 
     def test_new_miniblog_with_image(self):
         ret = self._new_miniblog(upload=True)
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
 
     def test_delete_miniblog(self):
         mb = self._new_miniblog()
@@ -87,7 +87,7 @@ class TestApiMiniblog(DoubanClientTestBase):
     def test_get_miniblog_comments(self):
         ret = self.client.miniblog.comments(self.miniblog_id)
         self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all([r.has_key('user') for r in ret]))
+        self.assertTrue(all(['user' in r for r in ret]))
 
     def test_new_delete_miniblog_comment(self):
         # new

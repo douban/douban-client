@@ -27,8 +27,8 @@ class TestApiDiscussion(DoubanClientTestBase):
         ret = self.client.discussion.get(self.discussion_id)
 
         self.assertEqual(self.discussion_id, ret['id'])
-        self.assertTrue(ret.has_key('author'))
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('author' in ret)
+        self.assertTrue('content' in ret)
 
     def test_update_discussion(self):
         content = title = uuid4().hex
@@ -65,14 +65,14 @@ class TestApiDiscussion(DoubanClientTestBase):
         ret = self.client.discussion.comment.get(self.discussion_id, self.comment_id)
 
         self.assertEqual(self.comment_id, ret['id'])
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('content' in ret)
 
     def test_new_delete_discussion_comment(self):
         # new
         ret = self.client.discussion.comment.new(self.discussion_id, self.comment_content)
         
-        self.assertTrue(ret.has_key('id'))
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('id' in ret)
+        self.assertTrue('content' in ret)
 
         # delete
         comment_id = ret['id']

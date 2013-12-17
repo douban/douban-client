@@ -21,28 +21,27 @@ class TestApiNote(DoubanClientTestBase):
     def test_get_note_list(self):
         ret = self.client.note.list(self.user_id)
 
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('notes'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('notes' in ret)
         self.assertTrue(isinstance(ret['notes'], list))
 
     def test_get_note(self):
         ret = self.client.note.get(self.note_id)
 
         self.assertEqual(ret['id'], self.note_id)
-        self.assertTrue(ret.has_key('title'))
-        self.assertTrue(ret.has_key('summary'))
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('title' in ret)
+        self.assertTrue('summary' in ret)
+        self.assertTrue('content' in ret)
 
     def test_new_note(self):
         ret = self._new_note()
         self.assertEqual(ret['title'], self.title)
-        self.assertTrue(ret.has_key('content'))
-
+        self.assertTrue('content' in ret)
 
     def test_update_note(self):
         ret = self._new_note()
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
         note_id = ret.get('id')
         self.assertTrue(note_id)
         ret = self.client.note.update(note_id, self.title, self.update_content)
@@ -56,7 +55,7 @@ class TestApiNote(DoubanClientTestBase):
 
     def test_upload_note_photo(self):
         note = self._new_note()
-        self.assertTrue(note.has_key('id'))
+        self.assertTrue('id' in note)
         note_id = note.get('id')
         self.assertTrue(note_id)
 
@@ -75,9 +74,9 @@ class TestApiNote(DoubanClientTestBase):
 
     def test_get_liked(self):
         ret = self.client.note.liked_list(self.user_id)
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('notes'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('notes' in ret)
         self.assertTrue(isinstance(ret['notes'], list))
 
     def test_like(self):
@@ -95,13 +94,13 @@ class TestApiNote(DoubanClientTestBase):
     def test_get_note_comment(self):
         ret = self.client.note.comment.get(self.note_id, self.comment_id)
         self.assertEqual(self.comment_id, ret['id'])
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('content' in ret)
 
     def test_new_delete_note_comment(self):
         # new
         ret = self.client.note.comment.new(self.note_id, self.comment_content)
-        self.assertTrue(ret.has_key('id'))
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('id' in ret)
+        self.assertTrue('content' in ret)
         # delete
         comment_id = ret['id']
         ret = self.client.note.comment.delete(self.note_id, comment_id)

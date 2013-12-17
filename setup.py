@@ -18,7 +18,7 @@ setup(
     packages = find_packages(),
     include_package_data = True,
     platforms = 'any',
-    install_requires = ['py-oauth2>=0.0.5'],
+    install_requires = ['py-oauth2>=0.0.8', 'six>=1.4.1'],
     classifiers = [
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
