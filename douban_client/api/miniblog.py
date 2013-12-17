@@ -26,9 +26,6 @@ class Miniblog(DoubanAPIBase):
     def user_timeline(self, user_id, since_id=None, until_id=None):
         return self._get('/shuo/v2/statuses/user_timeline/%s'%user_id, since_id=since_id, until_id=until_id)
 
-    def mentions(self, count=DEFAULT_COUNT, since_id=None, until_id=None):
-        return self._get('/shuo/v2/statuses/mentions', count=count, since_id=since_id, until_id=until_id)
-
     def like(self, id):
         return self._post('/shuo/v2/statuses/%s/like'%id)
 
