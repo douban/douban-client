@@ -62,7 +62,7 @@ class TestApiNote(DoubanClientTestBase):
         self.assertTrue(note_id)
 
         pid = 1
-        image = open('douban.png')
+        image = open('douban.png', 'rb')
         content = self.update_content
         layout = 'L'
         desc = 'desc for image%s' % pid

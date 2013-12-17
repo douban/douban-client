@@ -20,7 +20,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         return 'test miniblog %s by douban-client'% uuid4().hex
 
     def _new_miniblog(self, upload=False):
-        image = upload and open('douban.png')
+        image = upload and open('douban.png', 'rb')
         return self.client.miniblog.new(self._gen_text(), image=image)
 
     def test_get_miniblog(self):
@@ -47,10 +47,7 @@ class TestApiMiniblog(DoubanClientTestBase):
 
     def test_new_miniblog_with_image(self):
         ret = self._new_miniblog(upload=True)
-
         self.assertTrue(ret.has_key('id'))
-        self.assertEqual('upload', ret['type'])
-
 
     def test_delete_miniblog(self):
         mb = self._new_miniblog()
@@ -120,7 +117,7 @@ class TestApiMiniblog(DoubanClientTestBase):
         ret = self.client.miniblog.rec(title=self.rec_title, url=self.rec_url,
                 desc=self.rec_desc, image=self.rec_image)
 
-        self.assertEqual(ret['title'], u'推荐网址')
+        self.assertEqual(ret['title'], '推荐网址')
         self.assertEqual(len(ret['attachments']), 1)
 
 
