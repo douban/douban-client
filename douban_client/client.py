@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from pyoauth2 import Client, AccessToken
-from api import DoubanAPI
+from .api import DoubanAPI
 
 
 class DoubanClient(DoubanAPI):

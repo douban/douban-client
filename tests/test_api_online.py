@@ -74,7 +74,7 @@ class TestApiOnline(DoubanClientTestBase):
     def test_get_online_participants(self):
         ret = self.client.online.participants(self.online_id)
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['users'], list))
 
     def test_get_online_discussions(self):
@@ -85,7 +85,7 @@ class TestApiOnline(DoubanClientTestBase):
     def test_online_list(self):
         ret = self.client.online.list(cate='day')
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['onlines'], list))
 
     def test_new_online_discussion(self):
@@ -98,13 +98,13 @@ class TestApiOnline(DoubanClientTestBase):
     def test_created_onlines(self):
         ret = self.client.online.created(self.user_id)
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['onlines'], list))
 
     def test_joined_onlines(self):
         ret = self.client.online.joined(self.user_id)
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['onlines'], list))
 
 
