@@ -22,8 +22,10 @@ class TestApiMiniblog(DoubanClientTestBase):
 
     def _new_miniblog(self, upload=False):
         image = upload and open('douban.png', 'rb')
-        self.client.miniblog.new(self._gen_text(), image=image)
-        image.close()
+        ret = self.client.miniblog.new(self._gen_text(), image=image)
+        if image:
+            image.close()
+        return ret
 
     def test_get_miniblog(self):
         ret = self.client.miniblog.get(self.miniblog_id)

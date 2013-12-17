@@ -35,9 +35,8 @@ class TestApiUser(DoubanClientTestBase):
 
         self.assertFalse(ret['following'])
 
-
-        self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all(['uid' in r for r in ret]))
+        self.assertTrue(isinstance(ret, dict))
+        self.assertTrue('uid' in ret)
 
     def test_followers(self):
         ret = self.client.user.followers(self.user_id)
