@@ -36,7 +36,6 @@ class TestApiNote(DoubanClientTestBase):
 
     def test_new_note(self):
         ret = self._new_note()
-
         self.assertEqual(ret['title'], self.title)
         self.assertTrue('content' in ret)
 
@@ -61,22 +60,20 @@ class TestApiNote(DoubanClientTestBase):
         self.assertTrue(note_id)
 
         pid = 1
-        image = open('douban.png', 'rb')
         content = self.update_content
         layout = 'L'
         desc = 'desc for image%s' % pid
-        ret = self.client.note.upload_photo(note_id, pid, image, content, layout, desc)
-        self.assertTrue('content' in ret)
+        with open('douban.png', 'rb') as image:
+            ret = self.client.note.upload_photo(note_id, pid, image, content, layout, desc)
+            self.assertTrue(ret.has_key('content'))
 
     def test_delete_note(self):
         note = self._new_note()
         ret = self.client.note.delete(note['id'])
-
         self.assertEqual(ret, {})
 
     def test_get_liked(self):
         ret = self.client.note.liked_list(self.user_id)
-
         self.assertTrue('start' in ret)
         self.assertTrue('count' in ret)
         self.assertTrue('notes' in ret)
@@ -92,12 +89,10 @@ class TestApiNote(DoubanClientTestBase):
 
     def test_note_comments(self):
         ret = self.client.note.comments(self.note_id)
-
         self.assertTrue(isinstance(ret['comments'], list))
 
     def test_get_note_comment(self):
         ret = self.client.note.comment.get(self.note_id, self.comment_id)
-
         self.assertEqual(self.comment_id, ret['id'])
         self.assertTrue('content' in ret)
 
@@ -106,11 +101,9 @@ class TestApiNote(DoubanClientTestBase):
         ret = self.client.note.comment.new(self.note_id, self.comment_content)
         self.assertTrue('id' in ret)
         self.assertTrue('content' in ret)
-
         # delete
         comment_id = ret['id']
         ret = self.client.note.comment.delete(self.note_id, comment_id)
-
         self.assertEqual({}, ret)
 
 
