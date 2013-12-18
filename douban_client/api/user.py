@@ -2,13 +2,14 @@
 
 from .base import DoubanAPIBase, DEFAULT_START, DEFAULT_COUNT
 
+
 class User(DoubanAPIBase):
 
     def __repr__(self):
         return '<DoubanAPI User>'
 
     def get(self, id):
-        return self._get('/v2/user/%s'%id)
+        return self._get('/v2/user/%s' % id)
 
     @property
     def me(self):
@@ -24,17 +25,9 @@ class User(DoubanAPIBase):
         return self._post('/shuo/v2/friendships/destroy', user_id=id)
 
     def following(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        page = start/count
-        return self._get('/shuo/v2/users/%s/following'%id, page=page, count=count)
+        page = start / count
+        return self._get('/shuo/v2/users/%s/following' % id, page=page, count=count)
 
     def followers(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-        page = start/count
-        return self._get('/shuo/v2/users/%s/followers'%id, page=page, count=count)
-
-    # def following_followers_of(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-    #     return self._get('/shuo/users/%s/following_followers_of', start=start, count=count)
-
-
-    # def suggestions(self, id, start=DEFAULT_START, count=DEFAULT_COUNT):
-    #     page = start/count
-    #     return self._get('/shuo/users/%s/suggestions'%id, page=page, count=count)
+        page = start / count
+        return self._get('/shuo/v2/users/%s/followers' % id, page=page, count=count)

@@ -2,6 +2,7 @@
 
 from .subject import Subject
 
+
 class Movie(Subject):
 
     target = 'movie'
@@ -10,7 +11,7 @@ class Movie(Subject):
         return '<DoubanAPI Movie>'
 
     def celebrity(self, celebrity_id):
-        return self._get('/v2/movie/celebrity/%s'%celebrity_id)
+        return self._get('/v2/movie/celebrity/%s' % celebrity_id)
 
     def imdb(self, imdb_id):
-        return self._get('/v2/movie/imdb/%s'%imdb_id)
+        return self._get('/v2/movie/imdb/%s' % imdb_id)

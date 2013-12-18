@@ -2,6 +2,7 @@
 
 from .subject import Subject
 
+
 class Book(Subject):
 
     target = 'book'
@@ -10,4 +11,4 @@ class Book(Subject):
         return '<DoubanAPI Book>'
 
     def isbn(self, isbn_id):
-        return self._get('/v2/book/isbn/%s'%isbn_id)
+        return self._get('/v2/book/isbn/%s' % isbn_id)
