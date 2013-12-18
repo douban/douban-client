@@ -101,8 +101,6 @@ __用户 User__
 取消关注 client.user.unfollow(id)
 粉丝信息 client.user.followers(id, start, count)
 关注信息 client.user.following(id, start, count) 
-关注关系 client.user.friendships(target_id, source_id) 
-共同关注 client.user.follow_in_common(id, start,count) 
 加入黑名单 client.user.block(id)
 ```
 <http://developers.douban.com/wiki/?title=user_v2>
@@ -116,7 +114,6 @@ __广播 Miniblog__
 # 以下 id 指广播数字 id
 当前用户Timeline client.miniblog.home_timeline(count)
 指定用户Timeline client.miniblog.user_timeline(user_id, count)
-@当前用户的广播  client.miniblog.mentions(count)
 
 获取一条广播 client.miniblog.get(id)
 新写一条广播 client.miniblog.new(text)
@@ -185,7 +182,7 @@ __日记 Note__
 删除一条回复  client.note.comment.delete(comment_id)
 
 ```
-<http://developers.douban.com/wiki/?title=doumail_v2>
+<http://developers.douban.com/wiki/?title=note_v2>
 
 
 
@@ -256,7 +253,6 @@ __电影 Movie__
 # q: 关键词, tag: 标签
 获取一部电影信息 client.movie.get(id)
 获取影人信息 client.movie.celebrity(celebrity_id)
-获取影人作品信息 client.movie.celebrity_works(celebrity_id)
 通过imdb获取电影 client.movie.imdb(imdb_number)
 搜索电影信息     client.movie.search(q, tag, start, count) 
 
@@ -376,6 +372,17 @@ __论坛 Discussion__
 已实现的接口中单元测试覆盖 90%+，如果文档中有没有说明的可以参考下： <https://github.com/liluo/douban-client/tree/master/tests>
 
 ### Changelog
+
+__v0.0.6 [2013-12-18]__
+* 兼容 Python 3.x
+* 接口变更:
+```
++ note: upload_photo
+- user: block, friendships, follow_in_common
+- movie: celebrity_works
+- miniblog: mentions
+```
+
 __v0.0.5 [2013-04-26]__
 * 修复文档中关于授权部分的错误
 * 修复 `refresh_token` 错误
