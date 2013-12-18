@@ -12,8 +12,5 @@ class Movie(Subject):
     def celebrity(self, celebrity_id):
         return self._get('/v2/movie/celebrity/%s'%celebrity_id)
 
-    def celebrity_works(self, celebrity_id):
-        return self._get('/v2/movie/celebrity/%s/works'%celebrity_id)
-
     def imdb(self, imdb_id):
         return self._get('/v2/movie/imdb/%s'%imdb_id)
