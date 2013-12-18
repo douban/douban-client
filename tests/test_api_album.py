@@ -13,15 +13,15 @@ class TestApiAlbum(DoubanClientTestBase):
         ret = self.client.album.get(self.album_id)
         
         self.assertEqual(self.album_id, ret['id'])
-        self.assertTrue(ret.has_key('liked'))
+        self.assertTrue('liked' in ret)
 
     def test_new_album(self):
         ret = self.client.album.new('test', desc='ddddddddddddd')
         
-        self.assertTrue(ret.has_key('id'))
-        self.assertTrue(ret.has_key('privacy'))
-        self.assertTrue(ret.has_key('size'))
-        self.assertTrue(ret.has_key('author'))
+        self.assertTrue('id' in ret)
+        self.assertTrue('privacy' in ret)
+        self.assertTrue('size' in ret)
+        self.assertTrue('author' in ret)
 
     def test_update_album(self):
         new_title = uuid4().hex
@@ -39,22 +39,22 @@ class TestApiAlbum(DoubanClientTestBase):
         ret = self.client.album.list(self.user_id)
         
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('albums'))
+        self.assertTrue('albums' in ret)
         self.assertTrue(isinstance(ret['albums'], list))
 
     def test_liked_album(self):
         ret = self.client.album.liked_list(self.user_id)
 
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('albums'))
+        self.assertTrue('albums' in ret)
         self.assertTrue(isinstance(ret['albums'], list))
 
     def test_get_photos(self):
         ret = self.client.album.photos(self.album_id)
 
-        self.assertTrue(ret.has_key('start'))
-        self.assertTrue(ret.has_key('count'))
-        self.assertTrue(ret.has_key('photos'))
+        self.assertTrue('start' in ret)
+        self.assertTrue('count' in ret)
+        self.assertTrue('photos' in ret)
         self.assertTrue(isinstance(ret['photos'], list))
 
     def test_like_album(self):

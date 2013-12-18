@@ -13,8 +13,8 @@ class TestApiPhoto(DoubanClientTestBase):
         self.comment_content = uuid4().hex
 
     def _add_photo(self):
-        image = open('douban.png')
-        return self.client.photo.new(self.album_id, image)
+        with open('douban.png', 'rb') as image:
+            return self.client.photo.new(self.album_id, image)
 
     def test_get_photo(self):
         ret = self.client.photo.get(self.photo_id)
@@ -25,9 +25,9 @@ class TestApiPhoto(DoubanClientTestBase):
         ret = self._add_photo()
 
         self.assertEqual(self.album_id, ret['album_id'])
-        self.assertTrue(ret.has_key('id'))
-        self.assertTrue(ret.has_key('desc'))
-        self.assertTrue(ret.has_key('alt'))
+        self.assertTrue('id' in ret)
+        self.assertTrue('desc' in ret)
+        self.assertTrue('alt' in ret)
 
     def test_delete_photo(self):
         photo = self._add_photo()
@@ -57,14 +57,14 @@ class TestApiPhoto(DoubanClientTestBase):
         ret = self.client.photo.comment.get(self.photo_id, self.comment_id)
 
         self.assertEqual(self.comment_id, ret['id'])
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('content' in ret)
 
     def test_new_delete_photo_comment(self):
         # new
         ret = self.client.photo.comment.new(self.photo_id, self.comment_content)
         
-        self.assertTrue(ret.has_key('id'))
-        self.assertTrue(ret.has_key('content'))
+        self.assertTrue('id' in ret)
+        self.assertTrue('content' in ret)
 
         # delete
         comment_id = ret['id']

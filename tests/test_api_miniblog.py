@@ -3,6 +3,7 @@
 from uuid import uuid4
 from framework import DoubanClientTestBase, DoubanAPIError, main
 
+
 class TestApiMiniblog(DoubanClientTestBase):
 
     def setUp(self):
@@ -20,76 +21,58 @@ class TestApiMiniblog(DoubanClientTestBase):
         return 'test miniblog %s by douban-client'% uuid4().hex
 
     def _new_miniblog(self, upload=False):
-        image = upload and open('douban.png')
-        return self.client.miniblog.new(self._gen_text(), image=image)
+        image = upload and open('douban.png', 'rb')
+        ret = self.client.miniblog.new(self._gen_text(), image=image)
+        if image:
+            image.close()
+        return ret
 
     def test_get_miniblog(self):
         ret = self.client.miniblog.get(self.miniblog_id)
-
         self.assertTrue(isinstance(ret, dict))
 
     def test_home_timeline(self):
         ret = self.client.miniblog.home_timeline()
-
         self.assertTrue(isinstance(ret, list))
 
     def test_user_timeline(self):
         ret = self.client.miniblog.user_timeline(self.user_id)
-
         self.assertTrue(isinstance(ret, list))
         self.assertTrue(all([self.user_id == r['user']['id'] for r in ret]))
 
-    def test_mentions(self):
-        uid = self.client.user.me['uid']
-        ret = self.client.miniblog.mentions()
-
-        self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all([isinstance(r, dict) for r in ret]))
-        self.assertTrue(all([r.has_key('id') for r in ret]))
-        self.assertTrue(all([r.has_key('unread') for r in ret]))
-
     def test_new_miniblog(self):
         ret = self._new_miniblog()
-
         self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(ret.has_key('id'))
+        self.assertTrue('id' in ret)
 
     def test_new_miniblog_with_image(self):
         ret = self._new_miniblog(upload=True)
-
-        self.assertTrue(ret.has_key('id'))
-        self.assertEqual('upload', ret['type'])
-
+        self.assertTrue('id' in ret)
 
     def test_delete_miniblog(self):
         mb = self._new_miniblog()
         mid = mb['id']
         self.client.miniblog.delete(mid)
         func = self.client.miniblog.get
-
         self.assertRaises(DoubanAPIError, func, mid)
 
     def test_like_unlike_likers_miniblog(self):
         mb = self._new_miniblog()
         mid = mb['id']
-
         ret = self.client.miniblog.like(mid)
         self.assertTrue(ret['liked'])
 
         ret = self.client.miniblog.unlike(mid)
         self.assertFalse(ret['liked'])
-
         ret = self.client.miniblog.likers(mid)
         self.assertTrue(isinstance(ret, list))
 
     def test_reshare_unreshare_resharers_miniblog(self):
         mid = self.miniblog_id
-
         # reshare
         self.client.miniblog.reshare(mid)
         ret = self.client.miniblog.get(mid)
         reshared_count = ret['reshared_count']
-
         self.assertTrue(reshared_count > 0)
 
         # unreshare
@@ -105,16 +88,13 @@ class TestApiMiniblog(DoubanClientTestBase):
 
     def test_get_miniblog_comments(self):
         ret = self.client.miniblog.comments(self.miniblog_id)
-
         self.assertTrue(isinstance(ret, list))
-        self.assertTrue(all([r.has_key('user') for r in ret]))
+        self.assertTrue(all(['user' in r for r in ret]))
 
     def test_new_delete_miniblog_comment(self):
         # new
         ret = self.client.miniblog.comment.new(self.miniblog_id, self.comment)
-
         self.assertEqual(self.comment, ret['text'])
-
         # delete
         comment_id = ret['id']
         ret = self.client.miniblog.comment.delete(comment_id)
@@ -122,14 +102,12 @@ class TestApiMiniblog(DoubanClientTestBase):
 
     def test_get_miniblog_comment(self):
         ret = self.client.miniblog.comment.get(self.comment_id)
-
         self.assertEqual('456', ret['text'])
 
     def test_miniblog_rec(self):
         ret = self.client.miniblog.rec(title=self.rec_title, url=self.rec_url,
                 desc=self.rec_desc, image=self.rec_image)
-
-        self.assertEqual(ret['title'], u'推荐网址')
+        self.assertTrue('title' in ret)
         self.assertEqual(len(ret['attachments']), 1)
 
 

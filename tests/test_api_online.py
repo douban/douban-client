@@ -18,7 +18,7 @@ class TestApiOnline(DoubanClientTestBase):
         self._desc = 'api test, desc abcdefg hijklmn opq rst uvw xyz, now you see, i can create online.'
         self.discussion_title = uuid4().hex
         self.discussion_content = uuid4().hex
-    
+
 
     def _add_online(self):
         return self.client.online.new(self._title, self._desc, begin_time, end_time)
@@ -48,7 +48,7 @@ class TestApiOnline(DoubanClientTestBase):
     def test_delete_online(self):
         online = self._add_online()
         ret = self.client.online.delete(online['id'])
-        
+
         self.assertEqual({}, ret)
 
     def test_join_online(self):
@@ -74,7 +74,7 @@ class TestApiOnline(DoubanClientTestBase):
     def test_get_online_participants(self):
         ret = self.client.online.participants(self.online_id)
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['users'], list))
 
     def test_get_online_discussions(self):
@@ -85,12 +85,12 @@ class TestApiOnline(DoubanClientTestBase):
     def test_online_list(self):
         ret = self.client.online.list(cate='day')
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['onlines'], list))
 
     def test_new_online_discussion(self):
-        ret = self.client.online.discussion.new(self.online_id, 
-                self.discussion_title, self.discussion_content)
+        online_id = 10903196
+        ret = self.client.online.discussion.new(online_id, self.discussion_title, self.discussion_content)
 
         self.assertTrue(self.discussion_title, ret['title'])
         self.assertTrue(self.discussion_content, ret['content'])
@@ -98,13 +98,13 @@ class TestApiOnline(DoubanClientTestBase):
     def test_created_onlines(self):
         ret = self.client.online.created(self.user_id)
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['onlines'], list))
 
     def test_joined_onlines(self):
         ret = self.client.online.joined(self.user_id)
 
-        self.assertTrue(ret.has_key('total'))
+        self.assertTrue('total' in ret)
         self.assertTrue(isinstance(ret['onlines'], list))
 
 

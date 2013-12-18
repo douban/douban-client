@@ -14,7 +14,8 @@ from .book import Book
 from .movie import Movie
 from .music import Music
 
-class DoubanApi(object):
+
+class DoubanAPI(object):
 
     def __repr__(self):
         return '<DoubanClient API>'
