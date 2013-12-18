@@ -28,15 +28,6 @@ class TestApiMovie(DoubanClientTestBase):
         self.assertTrue('avatars' in ret)
         self.assertTrue('works'in ret)
 
-    def test_get_celebrity_works(self):
-        ret = self.client.movie.celebrity_works(self.celebrity_id)
-
-        self.assertTrue(isinstance(ret, dict))
-        self.assertTrue(isinstance(ret['works'], list))
-        self.assertTrue('start' in ret)
-        self.assertTrue('count' in ret)
-        self.assertTrue('total' in ret)
-
     def test_get_movie_by_imdb(self):
         ret= self.client.movie.imdb(self.imdb)
 
