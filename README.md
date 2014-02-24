@@ -40,6 +40,8 @@ API_SECRET = 'your api secret'
 
 # 在 OAuth 2.0 中，
 # 获取权限需要指定相应的 scope，请注意!!
+# SCOPE权限说明,SCOPE权限，可以在应用的API权限申请处，查看。
+
 SCOPE = 'douban_basic_common,shuo_basic_r,shuo_basic_w'
 
 client = DoubanClient(API_KEY, API_SECRET, your_redirect_uri, SCOPE)
