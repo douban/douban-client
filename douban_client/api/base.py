@@ -13,7 +13,10 @@ def check_execption(func):
         resp = func(*arg, **kws)
         if resp.status >= 400:
             raise DoubanAPIError(resp)
-        return resp.parsed
+        body = resp.body
+        if body:
+            return resp.parsed
+        return body
     return _check
 
 
