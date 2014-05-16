@@ -3,10 +3,10 @@
 """
 auth with password
 
-注意：auth_with_password需要先申请xAuth权限
+注意：auth_with_password 需要先申请 xAuth 权限
 
-关于xAuth权限申请可咨询:api-master[at]douban.com
-或者到http://www.douban.com/group/dbapi/寻求帮助
+关于 xAuth 权限申请可咨询: api-master[at]douban.com
+或者到 http://www.douban.com/group/dbapi/ 寻求帮助
 
 """
 
