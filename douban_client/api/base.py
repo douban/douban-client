@@ -12,7 +12,10 @@ def check_execption(func):
     def _check(*arg, **kws):
         resp = func(*arg, **kws)
         if resp.status >= 400:
-            raise DoubanAPIError(resp)
+            if resp.status == 403:
+                raise DoubanOAuthError(401, 'UNAUTHORIZED')
+            else:
+                raise DoubanAPIError(resp)
         body = resp.body
         if body:
             return resp.parsed
