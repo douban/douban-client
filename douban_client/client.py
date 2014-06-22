@@ -18,7 +18,7 @@ class DoubanClient(DoubanAPI):
                              site=self.API_HOST,
                              authorize_url=self.AUTHORIZE_URL,
                              token_url=self.TOKEN_URL)
-        self.access_token = None
+        self.access_token = AccessToken(self.client, '')
 
     def __repr__(self):
         return '<DoubanClient OAuth2>'
